@@ -257,7 +257,7 @@ nucleo.define = {
          * <li><code>DETACHED</code>: The assets are never added to the scene. The programmer decides when to do this.</li>
          * </ul>
          *
-         * These modes can be used with {@link vxlScene.setLoadingMode}
+         * These modes can be used with {@link nucleo.Scene.setLoadingMode}
          */
         LOADING_MODE   : {LIVE: 'LIVE', LATER: 'LATER', DETACHED: 'DETACHED'},
         /**
