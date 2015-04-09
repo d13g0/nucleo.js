@@ -27,33 +27,47 @@
                                                    /--\           <_________>
 
 ================================================================================*/
-/**
- *
- * @author Diego Cantor
- */
+/*-------------------------------------------------------------------------
+ This file is part of Nucleo.js
+
+ Nucleo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 3.
+
+ Nucleo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Nucleo.  If not, see <http://www.gnu.org/licenses/>.
+ ---------------------------------------------------------------------------*/
 
 var nucleo = nucleo || {};
-
-nucleo.define ={
+/**
+ * Nucleo definitions
+ * @type {{Camera: {AXIS: {RIGHT: number[], UP: number[], NORMAL: number[]}, FRUSTUM: {FOV: number, NEAR: number, FAR: number}, TRACKING: {DEFAULT: string, ROTATIONAL: string, TRANSLATIONAL: string, CINEMATIC: string}, TYPE: {ORBITING: string, TRACKING: string, EXPLORING: string}}, View: {BACKGROUND: number[]}, ViewInteractor: {TASK: {NONE: number, PAN: number, ROTATE: number, DOLLY: number, ROLL: number}}, Actor: {MODE: {TEXTURED: string, SOLID: string, WIREFRAME: string, POINTS: string, LINES: string, BOUNDING_BOX: string, BB_AND_SOLID: string, WIRED_AND_SOLID: string, FLAT: string}, CULL: {BACK: string, FRONT: string, NONE: string}, PICKING: {DISABLED: string, CELL: string, OBJECT: string}}, Model: {LOADING_MODE: {LIVE: string, LATER: string, DETACHED: string}, MAX_NUM_INDICES: number, TYPE: {SIMPLE: string, MESH: string, BIG_DATA: string}, BoundingBox: {vertices: Array, wireframe: number[], color: number[], shading: boolean}, Floor: {vertices: Array, indices: Array, color: number[], shading: boolean}, Axis: {vertices: number[], wireframe: number[], colors: number[], shading: boolean}}, Renderable: {TASK: {CREATE: string, UPDATE_GEOMETRY: string, UPDATE_COLORS: string}}, Renderer: {MODE: {TIMER: string, ANIMFRAME: string, ON_DEMAND: string}, RATE: {SLOW: number, NORMAL: number}}, Texture: {FILTER: {NEAREST: string, LINEAR: string, NEAREST_MIPMAP_NEAREST: string, LINEAR_MIPMAP_NEAREST: string, NEAREST_MIPMAP_LINEAR: string, LINEAR_MIPMAP_LINEAR: string}}, Material: {DIFFUSE: number[], AMBIENT: number[], SPECULAR: number[], SHININESS: number, OPACITY: number, SHADING: boolean}, LookupTable: {list: string[], main: string}, PI_OVER_2: number, DEG_2_RAD: number, RAD_2_DEG: number}}
+ */
+nucleo.define = {
     /**
      * Defines the constants that can be used with <code>Camera</code>
      *
      * @namespace Camera definitions
      */
-    Camera : {
+    Camera: {
         /**
          * Camera axis
          * @type {define.Camera.AXIS|*}
          */
-        AXIS : {
+        AXIS   : {
             /**
              * Right vector constant: [1,0,0]
              */
-            RIGHT: [1, 0, 0],
+            RIGHT : [1, 0, 0],
             /**
              * Up vector constant: [0,1,0]
              */
-            UP: [0, 1, 0],
+            UP    : [0, 1, 0],
             /**
              * Camera axial or normal vector constant: [0,0,1]
              */
@@ -67,7 +81,7 @@ nucleo.define ={
             /**
              * Default field of view value: 30
              */
-            FOV: 30,
+            FOV : 30,
             /**
              * Default value for the near field: 0.1
              */
@@ -75,7 +89,7 @@ nucleo.define ={
             /**
              * Default value for the far field: 10000
              */
-            FAR: 10000
+            FAR : 10000
         },
 
         /**
@@ -110,7 +124,12 @@ nucleo.define ={
          * </pre>
          * @see Camera#follow, Camera#setTrackingMode
          */
-        TRACKING: { DEFAULT:'DEFAULT', ROTATIONAL:'ROTATIONAL', TRANSLATIONAL:'TRANSLATIONAL', CINEMATIC: 'CINEMATIC' },
+        TRACKING: {
+            DEFAULT      : 'DEFAULT',
+            ROTATIONAL   : 'ROTATIONAL',
+            TRANSLATIONAL: 'TRANSLATIONAL',
+            CINEMATIC    : 'CINEMATIC'
+        },
         /**
          * Camera type available
          *
@@ -124,7 +143,7 @@ nucleo.define ={
          *
          * <p> These modes can be used with the {@link Camera Camera constructor} or with its {@link Camera#setType setType} method</p>
          */
-        TYPE : { ORBITING: 'ORBITING', TRACKING : 'TRACKING', EXPLORING: 'EXPLORING'}
+        TYPE    : {ORBITING: 'ORBITING', TRACKING: 'TRACKING', EXPLORING: 'EXPLORING'}
     },
 
 
@@ -132,31 +151,31 @@ nucleo.define ={
      * @namespace Default values for views
      * @property {Array} background  A 4-valued array that contains the default background colour for view. The format is [r,g,b,a]
      */
-    View : {
-        BACKGROUND: [0.3,0.3,0.3]
+    View: {
+        BACKGROUND: [0.3, 0.3, 0.3]
 
     },
 
     /**
-    * @namespace Default values for view interactors
-    */
-    ViewInteractor :{
-    /**
-     *
-     * Enumeration of common camera tasks
-     *
-     * <p>The camera tasks can be:
-     * <ul>
-     * <li><code>NONE</code></li>
-     * <li><code>PAN</code></li>
-     * <li><code>ROTATE</code></li>
-     * <li><code>DOLLY</code></li>
-     * <li><code>ROLL</code></li>
-     * </ul>
-     * </p>
-     *  These constants are used internally and you probably would never need to use them.
+     * @namespace Default values for view interactors
      */
-        TASK  : { NONE : 0, PAN : 1, ROTATE : 2, DOLLY : 3, ROLL : 4}
+    ViewInteractor: {
+        /**
+         *
+         * Enumeration of common camera tasks
+         *
+         * <p>The camera tasks can be:
+         * <ul>
+         * <li><code>NONE</code></li>
+         * <li><code>PAN</code></li>
+         * <li><code>ROTATE</code></li>
+         * <li><code>DOLLY</code></li>
+         * <li><code>ROLL</code></li>
+         * </ul>
+         * </p>
+         *  These constants are used internally and you probably would never need to use them.
+         */
+        TASK: {NONE: 0, PAN: 1, ROTATE: 2, DOLLY: 3, ROLL: 4}
     },
 
     /**
@@ -164,7 +183,7 @@ nucleo.define ={
      *
      * @namespace Default values and constants that can be used with the <code>Actor</code> class.
      */
-    Actor : {
+    Actor: {
         /**
          * <p>Defines the visualization modes available for instances of Actor</p>
          * <p>The visualization  modes can be:
@@ -190,15 +209,15 @@ nucleo.define ={
          * @see Actor#setVisualizationMode
          */
         MODE: {
-            TEXTURED:'TEXTURED',
-            SOLID:'SOLID',
-            WIREFRAME:'WIREFRAME',
-            POINTS:'POINTS',
-            LINES:'LINES',
-            BOUNDING_BOX:'BOUNDING_BOX',
-            BB_AND_SOLID:'BBANDSOLID',
-            WIRED_AND_SOLID:'WIRED_AND_SOLID',
-            FLAT:'FLAT'
+            TEXTURED       : 'TEXTURED',
+            SOLID          : 'SOLID',
+            WIREFRAME      : 'WIREFRAME',
+            POINTS         : 'POINTS',
+            LINES          : 'LINES',
+            BOUNDING_BOX   : 'BOUNDING_BOX',
+            BB_AND_SOLID   : 'BBANDSOLID',
+            WIRED_AND_SOLID: 'WIRED_AND_SOLID',
+            FLAT           : 'FLAT'
         },
         /**
          *  <p>Defines the culling modes available for instances of Actor</p>
@@ -208,19 +227,19 @@ nucleo.define ={
          *   actor.cullFace(Actor.CULL.BACK); //hides the back face.
          *  </pre>
          */
-        CULL:{
-            BACK:'BACK',
-            FRONT:'FRONT',
-            NONE:'NONE'
+        CULL: {
+            BACK : 'BACK',
+            FRONT: 'FRONT',
+            NONE : 'NONE'
         },
 
         /**
          * <p>Defines the picking modes available for <code>Actor</code></p>
          */
         PICKING: {
-            DISABLED:'DISABLED',
-            CELL:'CELL',
-            OBJECT:'OBJECT'
+            DISABLED: 'DISABLED',
+            CELL    : 'CELL',
+            OBJECT  : 'OBJECT'
         }
 
     },
@@ -228,7 +247,7 @@ nucleo.define ={
     /**
      * @namespace Default values for models
      */
-    Model	: {
+    Model: {
 
         /**
          *  Enumeration with the different loading modes provided for models
@@ -240,7 +259,7 @@ nucleo.define ={
          *
          * These modes can be used with {@link vxlScene.setLoadingMode}
          */
-        LOADING_MODE: {LIVE: 'LIVE', LATER: 'LATER', DETACHED: 'DETACHED'},
+        LOADING_MODE   : {LIVE: 'LIVE', LATER: 'LATER', DETACHED: 'DETACHED'},
         /**
          * Maximum number of indices per model (Unsigned Short range)
          */
@@ -252,51 +271,52 @@ nucleo.define ={
          * <li><code>MESH</code>: This model represents a mesh (no shared triangles). Flat shading is required
          * <li><code>BIG_DATA</code>: This model is complex and it may required several rendering cycles.
          */
-        TYPE: {SIMPLE: 'SIMPLE', MESH: 'MESH', BIG_DATA: 'BIG DATA'},
+        TYPE           : {SIMPLE: 'SIMPLE', MESH: 'MESH', BIG_DATA: 'BIG DATA'},
 
-        BoundingBox :{ "vertices" : [],
-                "wireframe":[0,1,1,2,2,3,3,0,0,4,4,5,5,6,6,7,7,4,1,5,2,6,3,7],
-                "color":[1.0,1.0,1.0,1.0],
-                "shading": false
+        BoundingBox: {
+            "vertices" : [],
+            "wireframe": [0, 1, 1, 2, 2, 3, 3, 0, 0, 4, 4, 5, 5, 6, 6, 7, 7, 4, 1, 5, 2, 6, 3, 7],
+            "color"    : [1.0, 1.0, 1.0, 1.0],
+            "shading"  : false
         },
 
-        Floor :{
-            "vertices":[],"indices":[],"color":[0.6,0.6,0.6,1.0],"shading": false
+        Floor: {
+            "vertices": [], "indices": [], "color": [0.6, 0.6, 0.6, 1.0], "shading": false
         },
 
-        Axis :{
-            "vertices": [	-1, 0, 0, 	 1, 0, 0, 	 0,-2, 0,	 0, 2, 0,	 0, 0,-1,	 0, 0, 1	],
-            "wireframe": [ 	0, 1, 	2, 3, 	4, 5	],
-            "colors": [	1, 0, 0, 	  1, 0, 0, 	0, 1 ,0, 	 0, 1 ,0,   0, 0, 1,	 0, 0, 1 	],
-            "shading": false
+        Axis: {
+            "vertices" : [-1, 0, 0, 1, 0, 0, 0, -2, 0, 0, 2, 0, 0, 0, -1, 0, 0, 1],
+            "wireframe": [0, 1, 2, 3, 4, 5],
+            "colors"   : [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+            "shading"  : false
         }
 
     },
 
-    Renderable :{
-        TASK :{CREATE:'CREATE', UPDATE_GEOMETRY:'UPDATE_GEOMETRY', UPDATE_COLORS:'UPDATE_COLORS'}
+    Renderable: {
+        TASK: {CREATE: 'CREATE', UPDATE_GEOMETRY: 'UPDATE_GEOMETRY', UPDATE_COLORS: 'UPDATE_COLORS'}
 
     },
 
     /**
      * @namespace Default values for renderers
      */
-    Renderer 		: {
-        MODE: { TIMER:'TIMER', ANIMFRAME:'ANIMFRAME', ON_DEMAND:'ON_DEMAND'},
-        RATE : { SLOW: 10000,  NORMAL: 500 }
+    Renderer: {
+        MODE: {TIMER: 'TIMER', ANIMFRAME: 'ANIMFRAME', ON_DEMAND: 'ON_DEMAND'},
+        RATE: {SLOW: 10000, NORMAL: 500}
     },
 
     /**
      * @namespace Constants to handle textures
      */
-    Texture : {
-        FILTER:{
-            NEAREST:'NEAREST',
-            LINEAR:'LINEAR',
-            NEAREST_MIPMAP_NEAREST:'NEAREST_MIPMAP_NEAREST',
-            LINEAR_MIPMAP_NEAREST:'LINEAR_MIPMAP_NEAREST',
-            NEAREST_MIPMAP_LINEAR:'NEAREST_MIPMAP_LINEAR',
-            LINEAR_MIPMAP_LINEAR:'LINEAR_MIPMAP_LINEAR'
+    Texture: {
+        FILTER: {
+            NEAREST               : 'NEAREST',
+            LINEAR                : 'LINEAR',
+            NEAREST_MIPMAP_NEAREST: 'NEAREST_MIPMAP_NEAREST',
+            LINEAR_MIPMAP_NEAREST : 'LINEAR_MIPMAP_NEAREST',
+            NEAREST_MIPMAP_LINEAR : 'NEAREST_MIPMAP_LINEAR',
+            LINEAR_MIPMAP_LINEAR  : 'LINEAR_MIPMAP_LINEAR'
         }
     },
 
@@ -304,39 +324,38 @@ nucleo.define ={
      * @namespace Default values for <code>Material</code>
      * @see Material
      */
-    Material   : {
+    Material: {
         /**
          * Diffuse color used by default when a model does
          * not have diffuse color information: [0.8,0.8,0.8,1.0]
          */
-        DIFFUSE: [0.8,0.8,0.8,1.0],
+        DIFFUSE  : [0.8, 0.8, 0.8, 1.0],
         /**
          * Ambient color used by default when a model
          * does not have ambient color information: [0.0,0.0,0.0,1.0]
          */
-        AMBIENT: [0.0,0.0,0.0,1.0],
+        AMBIENT  : [0.0, 0.0, 0.0, 1.0],
         /**
          * Specular color used by default when a model
          * does not have specular color information: [0.0,0.0,0.0,1.0]
          */
-        SPECULAR: [0.0,0.0,0.0,1.0],
+        SPECULAR : [0.0, 0.0, 0.0, 1.0],
         /**
          * Shininess used by default when a model
          * does not have shininess information: 0
          */
-        SHININESS : 0.0,
+        SHININESS: 0.0,
         /**
          * Opacity used by default when a model
          * does not have opacity information: 0
          */
-        OPACITY : 1.0,
+        OPACITY  : 1.0,
         /**
          * Shading used by default when a model
          * does not have shading information: 0
          */
-        SHADING : true
+        SHADING  : true
     },
-
 
 
     /**
@@ -344,33 +363,32 @@ nucleo.define ={
      * @property {Array}       list         List of lookup tables available
      * @property {String}      main         Lookup table loaded by default
      */
-    LookupTable             : {
+    LookupTable: {
 
-        list : ["default","aal","autumn","blackbody","bone","brodmann","cardiac",
-            "copper","cortex","cte","french","fs","ge_color","gold","gooch",
-            "hot","hotiron","hsv","jet","nih","nih_fire","nih_ice","pink",
-            "rainramp","spectrum","surface","x_hot","x_rain"],
+        list: ["default", "aal", "autumn", "blackbody", "bone", "brodmann", "cardiac",
+            "copper", "cortex", "cte", "french", "fs", "ge_color", "gold", "gooch",
+            "hot", "hotiron", "hsv", "jet", "nih", "nih_fire", "nih_ice", "pink",
+            "rainramp", "spectrum", "surface", "x_hot", "x_rain"],
 
-        main:"default"
+        main: "default"
 
     },
 
     /**
      * Pi divided by 2
      */
-    PI_OVER_2: Math.PI /2,
+    PI_OVER_2: Math.PI / 2,
     /**
      * Multiplicative constant to convert degrees to radians
      */
-    DEG_2_RAD : Math.PI / 180,
+    DEG_2_RAD: Math.PI / 180,
     /**
      * Multiplicative constant to convert radians to degrees
      */
-    RAD_2_DEG : 180 / Math.PI
+    RAD_2_DEG: 180 / Math.PI
 
 
 };
-
 
 
 /**
@@ -391,18 +409,17 @@ nucleo.define ={
  * @property {JSON} bake The program that interleaves buffers for optimized rendering
  */
 nucleo.ESSL = {
-    VERTEX_SHADER   	: 'VERTEX_SHADER',
-        FRAGMENT_SHADER 	: 'FRAGMENT_SHADER',
-        MODEL_VIEW_MATRIX  	: 'mModelView',
-        NORMAL_MATRIX   	: 'mNormal',
-        PERSPECTIVE_MATRIX 	: 'mPerspective',
-        MVP_MATRIX          : 'mModelViewPerspective',
-        VERTEX_ATTRIBUTE    : 'aVertexPosition',
-        NORMAL_ATTRIBUTE    : 'aVertexNormal',
-        COLOR_ATTRIBUTE     : 'aVertexColor',
-        TEXCOORD_ATTRIBUTE  : 'aVertexTextureCoords'
+    VERTEX_SHADER     : 'VERTEX_SHADER',
+    FRAGMENT_SHADER   : 'FRAGMENT_SHADER',
+    MODEL_VIEW_MATRIX : 'mModelView',
+    NORMAL_MATRIX     : 'mNormal',
+    PERSPECTIVE_MATRIX: 'mPerspective',
+    MVP_MATRIX        : 'mModelViewPerspective',
+    VERTEX_ATTRIBUTE  : 'aVertexPosition',
+    NORMAL_ATTRIBUTE  : 'aVertexNormal',
+    COLOR_ATTRIBUTE   : 'aVertexColor',
+    TEXCOORD_ATTRIBUTE: 'aVertexTextureCoords'
 };
-
 
 
 /**
@@ -425,75 +442,154 @@ nucleo.ESSL = {
  * @see {Notifier}
  */
 nucleo.EVENTS = {
-    DEFAULT_LUT_LOADED 	   : 'nucleo.EVENTS.DEFAULT_LUT_LOADED',
-        SCENE_UPDATED		   : 'nucleo.EVENTS.SCENE_UPDATED',
-        MODELS_LOADING         : 'nucleo.EVENTS.MODELS_LOADING',
-        MODEL_NEW              : 'nucleo.EVENTS.MODEL_NEW',
-        MODELS_LOADED		   : 'nucleo.EVENTS.MODELS_LOADED',
-        ACTOR_MOVED            : 'nucleo.EVENTS.ACTOR_MOVED',
-        ACTOR_SCALED           : 'nucleo.EVENTS.ACTOR_SCALED',
-        ACTOR_ROTATED          : 'nucleo.EVENTS.ACTOR_ROTATED',
-        ACTOR_CHANGED_COLOR    : 'nucleo.EVENTS.ACTOR_CHANGED_COLOR',
-        ACTOR_CHANGED_SHADING  : 'nucleo.EVENTS.ACTOR_CHANGED_SHADING',
-        VIEW_NEW               : 'nucleo.EVENTS.VIEW_NEW',
-        SCENE_NEW              : 'nucleo.EVENTS.SCENE_NEW',
-        READER_DONE            : 'nucleo.EVENTS.READER_DONE'
+    DEFAULT_LUT_LOADED   : 'nucleo.EVENTS.DEFAULT_LUT_LOADED',
+    SCENE_UPDATED        : 'nucleo.EVENTS.SCENE_UPDATED',
+    MODELS_LOADING       : 'nucleo.EVENTS.MODELS_LOADING',
+    MODEL_NEW            : 'nucleo.EVENTS.MODEL_NEW',
+    MODELS_LOADED        : 'nucleo.EVENTS.MODELS_LOADED',
+    ACTOR_MOVED          : 'nucleo.EVENTS.ACTOR_MOVED',
+    ACTOR_SCALED         : 'nucleo.EVENTS.ACTOR_SCALED',
+    ACTOR_ROTATED        : 'nucleo.EVENTS.ACTOR_ROTATED',
+    ACTOR_CHANGED_COLOR  : 'nucleo.EVENTS.ACTOR_CHANGED_COLOR',
+    ACTOR_CHANGED_SHADING: 'nucleo.EVENTS.ACTOR_CHANGED_SHADING',
+    VIEW_NEW             : 'nucleo.EVENTS.VIEW_NEW',
+    SCENE_NEW            : 'nucleo.EVENTS.SCENE_NEW',
+    READER_DONE          : 'nucleo.EVENTS.READER_DONE'
 };
 
-nucleo.DEBUG = true;
+nucleo.DEBUG = true;/*-------------------------------------------------------------------------
+ This file is part of Nucleo.js
+
+ Nucleo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 3.
+
+ Nucleo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Nucleo.  If not, see <http://www.gnu.org/licenses/>.
+ ---------------------------------------------------------------------------*/
+
+if (typeof(jQuery) == 'undefined') {
+    nucleo.jquery = false;
+    console.warn('JQuery is not available');
+}
+else {
+    nucleo.jquery = true;
+    console.info('JQuery is available');
+}
+
+/**
+ * Ajax calls
+ * @param params
+ */
+nucleo.ajax = function (params) {
+
+    if (nucleo.jquery) {
+        $.ajax(params);
+        return;
+    }
+
+    //When JQuery is not present
+    var response, request    = new XMLHttpRequest();
+
+    request.open(params.type, params.url, true);
+
+    if (params.mimeType !== undefined){
+        request.overrideMimeType(params.mimeType);
+    }
+
+    request.onreadystatechange = function(){
+        if (request.readyState == 4){
+            if (params.dataType === 'json'){
+                response = JSON.parse(request.responseText);
+            }
+            else{
+                response = request.responseText;
+            }
+            params.success(response);
+        }
+    }
+
+    request.onerror = function(){ params.error(request, request.status, request.statusText);}
+    request.send();
+
+
+};/*-------------------------------------------------------------------------
+ This file is part of Nucleo.js
+
+ Nucleo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 3.
+
+ Nucleo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Nucleo.  If not, see <http://www.gnu.org/licenses/>.
+ ---------------------------------------------------------------------------*/
+/**
+ * Nucleo Utils
+ * @type {{piOver2: number, deg2rad: number, rad2deg: number, isMac: Function, int2rgb: Function, frac2rgb: Function, rgb2frac: Function, rgb2hex: Function, hex2rgb: Function, rgb2decimal: Function, createColor: Function, format: Function, createVec3: Function, createArr3: Function, generateUID: Function, extend: Function, getPath: Function, getAngle: Function, deg2rad: number, doTimer: Function, console: Function}}
+ */
 nucleo.util = {
 
     /**
      * Pi divided by 2
      */
-    piOver2: Math.PI /2,
+    piOver2: Math.PI / 2,
     /**
      * Multiplicative constant to convert degrees to radians
      */
-    deg2rad : Math.PI / 180,
+    deg2rad: Math.PI / 180,
     /**
      * Multiplicative constant to convert radians to degrees
      */
-    rad2deg : 180 / Math.PI,
+    rad2deg: 180 / Math.PI,
 
-    isMac: function(){
+    isMac  : function () {
         return navigator.platform.toUpperCase().indexOf("MAC") != -1;
     },
     /**
      *Returns a RGB color based on an integer (0..16 millions?)
      */
-    int2rgb: function(i){
-        return [((i >> 16) & 0xFF)/256,((i >> 8) & 0xFF)/256,(i & 0xFF)/256];
+    int2rgb: function (i) {
+        return [((i >> 16) & 0xFF) / 256, ((i >> 8) & 0xFF) / 256, (i & 0xFF) / 256];
     },
 
-    frac2rgb: function(r,g,b){
-        var c = nucleo.util.createArr3(r,g,b);
-        c[0] = Math.round(255 * c[0]);
-        c[1] = Math.round(255 * c[1]);
-        c[2] = Math.round(255 * c[2]);
+    frac2rgb: function (r, g, b) {
+        var c = nucleo.util.createArr3(r, g, b);
+        c[0]  = Math.round(255 * c[0]);
+        c[1]  = Math.round(255 * c[1]);
+        c[2]  = Math.round(255 * c[2]);
         return c;
     },
 
-    rgb2frac: function(r,g,b){ //@TODO: is this round  good?
-        var c = nucleo.util.createArr3(r,g,b);
-        c[0] = Math.round(c[0] / 255);
-        c[1] = Math.round(c[1] / 255);
-        c[2] = Math.round(c[2] / 255);
+    rgb2frac: function (r, g, b) { //@TODO: is this round  good?
+        var c = nucleo.util.createArr3(r, g, b);
+        c[0]  = Math.round(c[0] / 255);
+        c[1]  = Math.round(c[1] / 255);
+        c[2]  = Math.round(c[2] / 255);
         return c;
     },
 
-    rgb2hex: function(r,g,b){
-        var c = nucleo.util.createArr3(r,g,b);
-        return "#" + ((1 << 24) + (c[0] << 16) + (c[1]<< 8) + c[2]).toString(16).slice(1);
+    rgb2hex: function (r, g, b) {
+        var c = nucleo.util.createArr3(r, g, b);
+        return "#" + ((1 << 24) + (c[0] << 16) + (c[1] << 8) + c[2]).toString(16).slice(1);
     },
 
     /**
      * This function is attributed to Tim Down
      * @link{http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb}
      */
-    hex2rgb: function(hex){
+    hex2rgb    : function (hex) {
         var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-        hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+        hex                = hex.replace(shorthandRegex, function (m, r, g, b) {
             return r + r + g + g + b + b;
         });
 
@@ -508,36 +604,36 @@ nucleo.util = {
      * Rescales the color from [0,255] to [0,1]
      * WebGL uses [0,1] range
      */
-    rgb2decimal : function(rgb){
+    rgb2decimal: function (rgb) {
         if (rgb == null || rgb == undefined) return null;
-        return [rgb[0]/255, rgb[1]/255,rgb[2]/255];
+        return [rgb[0] / 255, rgb[1] / 255, rgb[2] / 255];
     },
 
-    createColor : function(r,g,b){
+    createColor: function (r, g, b) {
         var color = [];
         if (r == undefined) {
             return null;
         }
 
-        if (r instanceof Array){
+        if (r instanceof Array) {
             var c = r.slice(0);
-            r = c[0];
-            g = c[1];
-            b = c[2];
+            r     = c[0];
+            g     = c[1];
+            b     = c[2];
         }
 
-        if (typeof(r) == 'string'){
+        if (typeof(r) == 'string') {
             color = this.rgb2decimal(this.hex2rgb(r));
         }
-        else if (typeof(r) == 'number'){
-            if (r <0 || g == undefined || b == undefined || g <0 || b <0){
+        else if (typeof(r) == 'number') {
+            if (r < 0 || g == undefined || b == undefined || g < 0 || b < 0) {
                 return null; //invalid color
             }
-            else if (r>1 || g>1 || b>1){
-                color = this.rgb2decimal([r,g,b]);
+            else if (r > 1 || g > 1 || b > 1) {
+                color = this.rgb2decimal([r, g, b]);
             }
-            else{
-                color = [r,g,b];
+            else {
+                color = [r, g, b];
             }
         }
 
@@ -549,18 +645,18 @@ nucleo.util = {
      * @param {Array, vec3, vec4} arr the object to format
      * @param {Number} digits the number of decimal figures
      */
-    format: function(arr, digits){
-        var p = Math.pow(10,digits);
-        if (typeof(arr) == 'object'){
+    format     : function (arr, digits) {
+        var p = Math.pow(10, digits);
+        if (typeof(arr) == 'object') {
 
             var result = '[';
-            for (var i=0; i < arr.length-1; i+=1){
-                result  += Math.round(arr[i] * p) / p + ', ';
+            for (var i = 0; i < arr.length - 1; i += 1) {
+                result += Math.round(arr[i] * p) / p + ', ';
             }
-            result += Math.round(arr[arr.length-1] * p) / p  + ']'
+            result += Math.round(arr[arr.length - 1] * p) / p + ']'
         }
-        else if (typeof(arr) == 'number'){
-            result = '[' + Math.round(arr * p) / p  + ']';
+        else if (typeof(arr) == 'number') {
+            result = '[' + Math.round(arr * p) / p + ']';
         }
         return result;
     },
@@ -571,13 +667,13 @@ nucleo.util = {
      * @param {Number} y if x is a number, this parameter corresponds to the y-component
      * @param {Number} z if x is a number, this parameter corresponds to the z-component
      */
-    createVec3: function(x,y,z){
+    createVec3: function (x, y, z) {
         var vvv = vec3.create();
-        if (x instanceof Array || x instanceof Float32Array){
+        if (x instanceof Array || x instanceof Float32Array) {
             vvv = vec3.clone(x)
         }
-        else{
-            vvv = vec3.fromValues(x,y,z);
+        else {
+            vvv = vec3.fromValues(x, y, z);
         }
         return vvv;
     },
@@ -587,14 +683,14 @@ nucleo.util = {
      * @param {Number} y if x is a number, this parameter corresponds to the y-component
      * @param {Number} z if x is a number, this parameter corresponds to the z-component
      */
-    createArr3: function(x,y,z){
+    createArr3: function (x, y, z) {
         var vvv = []
-        if (x instanceof Array || x instanceof Float32Array){
+        if (x instanceof Array || x instanceof Float32Array) {
             vvv[0] = x[0];
             vvv[1] = x[1];
             vvv[2] = x[2];
         }
-        else{
+        else {
             vvv[0] = x;
             vvv[1] = y;
             vvv[2] = z;
@@ -602,17 +698,18 @@ nucleo.util = {
         return vvv;
     },
 
-    generateUID: function(){
+    generateUID: function () {
         function S4() {
-            return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+            return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
         }
-        return (S4()+"-"+S4()+"-"+S4()+"-"+S4());
+
+        return (S4() + "-" + S4() + "-" + S4() + "-" + S4());
     },
 
-    extend : function(){
+    extend: function () {
         var ret = {};
         var len = arguments.length;
-        for (var i=0; i<len; i++) {
+        for (var i = 0; i < len; i++) {
             for (p in arguments[i]) {
                 if (arguments[i].hasOwnProperty(p)) {
                     ret[p] = arguments[i][p];
@@ -622,15 +719,15 @@ nucleo.util = {
         return ret;
     },
 
-    getPath : function(path){
-        if (path ==undefined || path == null) {
+    getPath : function (path) {
+        if (path == undefined || path == null) {
             return "";
         }
-        else if (path.length - 1 == path.lastIndexOf('/')){
+        else if (path.length - 1 == path.lastIndexOf('/')) {
             return path;
         }
-        else if (path.lastIndexOf('.') > path.lastIndexOf('/')){
-            return path.substring(0, path.lastIndexOf('/')+1)
+        else if (path.lastIndexOf('.') > path.lastIndexOf('/')) {
+            return path.substring(0, path.lastIndexOf('/') + 1)
         }
         else
             return path + '/';
@@ -639,8 +736,8 @@ nucleo.util = {
      * Returns an angle between 0 and 360 deg
      * @param{Number} angle the angle
      */
-    getAngle : function(angle){
-        if (angle > 360 || angle <-360) {
+    getAngle: function (angle) {
+        if (angle > 360 || angle < -360) {
             return angle % 360;
         }
         else return angle;
@@ -649,23 +746,21 @@ nucleo.util = {
      *Converts degrees to radians
      * @param{Number} deg angle in degrees
      */
-    deg2rad : function(deg){
+    deg2rad : function (deg) {
         return deg * Math.PI / 180;
     },
 
-    doTimer : function(length, resolution, oninstance, oncomplete){
+    doTimer: function (length, resolution, oninstance, oncomplete) {
         var steps = (length / 100) * (resolution / 10),
             speed = length / steps,
             count = 0,
             start = new Date().getTime();
 
-        function instance(){
-            if(count++ == steps)
-            {
+        function instance() {
+            if (count++ == steps) {
                 oncomplete(steps, count);
             }
-            else
-            {
+            else {
                 oninstance(steps, count);
                 var diff = (new Date().getTime() - start) - (count * speed);
                 window.setTimeout(instance, (speed - diff));
@@ -675,99 +770,80 @@ nucleo.util = {
     },
 
 
-    console : function(txt,flag) {
-        if (nucleo.DEBUG == true || flag){
+    console: function (txt, flag) {
+        if (nucleo.DEBUG == true || flag) {
             console.info(txt);
         }
     }
 };
 
-Array.prototype.max = function(){
-    if (this.length > 65535){
+Array.prototype.max = function () {
+    if (this.length > 65535) {
         var max = this[0];
-        for(var i=0,N = this.length; i <N; i+=1){
-            if (this[i] > max){
+        for (var i = 0, N = this.length; i < N; i += 1) {
+            if (this[i] > max) {
                 max = this[i];
             }
         }
         return max;
     }
-    else{
+    else {
         return Math.max.apply(null, this);
     }
 };
 
-Array.prototype.min = function(){
-    if (this.length > 65535){
+Array.prototype.min = function () {
+    if (this.length > 65535) {
         var min = this[0];
-        for(var i=0,N = this.length; i <N; i+=1){
-            if (this[i] < min){
+        for (var i = 0, N = this.length; i < N; i += 1) {
+            if (this[i] < min) {
                 min = this[i];
             }
         }
         return min;
     }
-    else{
+    else {
         return Math.min.apply(null, this);
     }
 };
 
 
-
-
 Array.prototype.hasObject = (
-    !Array.indexOf ? function (o)
-    {
+    !Array.indexOf ? function (o) {
         var l = this.length + 1;
-        while (l -= 1)
-        {
-            if (this[l - 1] === o)
-            {
+        while (l -= 1) {
+            if (this[l - 1] === o) {
                 return true;
             }
         }
         return false;
-    } : function (o)
-    {
+    } : function (o) {
         return (this.indexOf(o) !== -1);
     }
 );
 
-window.requestAnimFrame = (function(){
-    return  window.requestAnimationFrame       ||
+window.requestAnimFrame = (function () {
+    return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame    ||
-        window.oRequestAnimationFrame      ||
-        window.msRequestAnimationFrame     ||
-        function(/* function */ callback, /* DOMElement */ element){
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function ( callback, element) {
             return window.setTimeout(callback, 1000 / 60);
         };
 })();
 
-window.cancelRequestAnimFrame = ( function() {
-    return window.cancelAnimationFrame          ||
-        window.webkitCancelRequestAnimationFrame    ||
-        window.mozCancelRequestAnimationFrame       ||
-        window.oCancelRequestAnimationFrame     ||
-        window.msCancelRequestAnimationFrame        ||
+window.cancelRequestAnimFrame = (function () {
+    return window.cancelAnimationFrame ||
+        window.webkitCancelRequestAnimationFrame ||
+        window.mozCancelRequestAnimationFrame ||
+        window.oCancelRequestAnimationFrame ||
+        window.msCancelRequestAnimationFrame ||
         clearTimeout
 })();
 
 
-//Check if JQuery is available
-if (typeof(jQuery) == 'undefined'){
-    nucleo.jquery = false;
-    console.warn('JQuery is not available');
-}
-else{
-    nucleo.jquery = true;
-    console.info('JQuery is available');
-}
 
-//Replacing jquery
-nucleo.ajax = function(params){
-  var xhr = new XMLHttpRequest();
-};
 /**
  * <p> 
  * Handles asynchronous communication among classes in Nucleo
@@ -5324,69 +5400,69 @@ nucleo.Landmark.prototype.retrieve = function(camera) {
     c.refresh();
 };
 /*-------------------------------------------------------------------------
-    This file is part of Nucleo.js
+ This file is part of Nucleo.js
 
-    Nucleo is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation version 3.
+ Nucleo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 3.
 
-    Nucleo is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ Nucleo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with Nucleo.  If not, see <http://www.gnu.org/licenses/>.
----------------------------------------------------------------------------*/  
+ You should have received a copy of the GNU General Public License
+ along with Nucleo.  If not, see <http://www.gnu.org/licenses/>.
+ ---------------------------------------------------------------------------*/
 
 /**
- * 
+ *
  * A Camera object simplifies WebGL programming by providing a simple object interface to the lower level
  * matrix manipulations that are required to view a 3D scene.
- * 
+ *
  * <p>A Camera is always associated to one <code>View</code> object. However, one View object can host multiple
  * cameras (through its <code>CameraManager</code>)</p>
- * 
- * @class Determines which region of the scene will be visible to the user. 
+ *
+ * @class Determines which region of the scene will be visible to the user.
  * @constructor Creates a Camera.
  * @param {View} p_view
- * @param {Object} p_type the type of camera 
+ * @param {Object} p_type the type of camera
  * @author Diego Cantor
  */
-nucleo.Camera = function Camera(p_view,p_type) {
-    
-    this.UID            = nucleo.util.generateUID(); //unique identification key
-    this.view           = p_view;
-    
-    this._matrix 	      = mat4.create();
-    this._right 		  = vec3.fromValues(1, 0, 0);
-	this._up              = vec3.fromValues(0, 1, 0);
-	this._forward         = vec3.fromValues(0, 0, 1);	
-	this._position        = vec3.fromValues(0, 0, 1);
-	this._focalPoint      = vec3.fromValues(0, 0, 0);
-	this._distanceVector  = vec3.fromValues(0, 0, 0);
-    
-    this._azimuth 	    = 0;
-    this._elevation     = 0;
-    this._roll          = 0;
-	this._relAzimuth    = 0;
-    this._relElevation  = 0;
-    this._relRoll       = 0;
-	this._dollyingStep  = 0; 
-    this._distance      = 1;
-    this._rotate_world  = false; //invert the horizontal coordinate system HCS
-    
-    this._fov           = nucleo.define.Camera.FRUSTUM.FOV;
-    this._near          = nucleo.define.Camera.FRUSTUM.NEAR;
-    this._far           = nucleo.define.Camera.FRUSTUM.FAR;
+nucleo.Camera = function Camera(p_view, p_type) {
 
-    this._aspect        = undefined;
-    this._perspective   = mat4.create();
+    this.UID = nucleo.util.generateUID(); //unique identification key
+    this.view = p_view;
+
+    this._matrix         = mat4.create();
+    this._right          = vec3.fromValues(1, 0, 0);
+    this._up             = vec3.fromValues(0, 1, 0);
+    this._forward        = vec3.fromValues(0, 0, 1);
+    this._position       = vec3.fromValues(0, 0, 1);
+    this._focalPoint     = vec3.fromValues(0, 0, 0);
+    this._distanceVector = vec3.fromValues(0, 0, 0);
+
+    this._azimuth      = 0;
+    this._elevation    = 0;
+    this._roll         = 0;
+    this._relAzimuth   = 0;
+    this._relElevation = 0;
+    this._relRoll      = 0;
+    this._dollyingStep = 0;
+    this._distance     = 1;
+    this._rotate_world = false; //invert the horizontal coordinate system HCS
+
+    this._fov  = nucleo.define.Camera.FRUSTUM.FOV;
+    this._near = nucleo.define.Camera.FRUSTUM.NEAR;
+    this._far  = nucleo.define.Camera.FRUSTUM.FAR;
+
+    this._aspect      = undefined;
+    this._perspective = mat4.create();
     this.updatePerspective();  //set the default perspective matrix
-    
-    this._following     = undefined;
-    this._trackingMode  = nucleo.define.Camera.TRACKING.DEFAULT;
-    
+
+    this._following    = undefined;
+    this._trackingMode = nucleo.define.Camera.TRACKING.DEFAULT;
+
     this.landmarks         = [];
     this._lmarkAnimationID = undefined; //useful to interrupt landmark animations
 
@@ -5396,8 +5472,8 @@ nucleo.Camera = function Camera(p_view,p_type) {
     } else {
         this.setType(nucleo.Camera.TYPE.EXPLORING, undefined);
     }
-    
-    
+
+
 };
 
 /*
@@ -5414,17 +5490,17 @@ nucleo.Camera.AXIS     = nucleo.define.Camera.AXIS;
  * Subsequent calls to rotate, setAzimuth, setElevation,
  * changeAzimuth or changeElevation will cause the inverted effect.
  * setRoll or changeRoll is not affected by this method.
- * 
+ *
  * This inversion is useful when one wants to simulate that the world
- * is moving, instead of the camera. 
- * 
+ * is moving, instead of the camera.
+ *
  * By default the camera angles are not reversed.
  * @param{Boolean} flag the boolean flag to reverse the angles.
  */
-nucleo.Camera.prototype.setWorldRotation = function(flag){
-	this._rotate_world = flag;
-	this._getAngles();
-	return this;
+nucleo.Camera.prototype.setWorldRotation = function (flag) {
+    this._rotate_world = flag;
+    this._getAngles();
+    return this;
 };
 
 /**
@@ -5435,34 +5511,34 @@ nucleo.Camera.prototype.setWorldRotation = function(flag){
  * @see Camera.TYPE,
  * @see Camera.TRACKING
  */
-nucleo.Camera.prototype.setType = function(p_type, p_tracking_mode){
-    
+nucleo.Camera.prototype.setType = function (p_type, p_tracking_mode) {
+
     var t = nucleo.Camera.TYPE;
-    
+
     if (p_type != t.ORBITING && p_type != t.TRACKING && p_type != t.EXPLORING) {
-        console.warn('Camera.setType WARNING type ['+ p_type +'] unknown. Setting camera to EXPLORING type.');
+        console.warn('Camera.setType WARNING type [' + p_type + '] unknown. Setting camera to EXPLORING type.');
         this.type = t.EXPLORING;
         this.setWorldRotation(true);
     }
     else {
-       
+
         this.type = p_type;
-        if (this.type == t.EXPLORING){
-        	this.setWorldRotation(true);
+        if (this.type == t.EXPLORING) {
+            this.setWorldRotation(true);
         }
-        else{
-        	this.setWorldRotation(false);
+        else {
+            this.setWorldRotation(false);
         }
         this._getAngles();
     }
-    
-    if (this.type  == nucleo.Camera.TYPE.TRACKING && p_tracking_mode != undefined){
+
+    if (this.type == nucleo.Camera.TYPE.TRACKING && p_tracking_mode != undefined) {
         this.setTrackingMode(p_tracking_mode);
     }
-    
+
     return this;
-    
-    
+
+
 };
 
 /**
@@ -5488,10 +5564,10 @@ nucleo.Camera.prototype.setType = function(p_type, p_tracking_mode){
  * @see nucleo.Camera#follow,
  * @see nucleo.Camera.TRACKING
  *
- * 
+ *
  */
-nucleo.Camera.prototype.setTrackingMode = function(mode){
-    if (this.type != nucleo.Camera.TYPE.TRACKING){
+nucleo.Camera.prototype.setTrackingMode = function (mode) {
+    if (this.type != nucleo.Camera.TYPE.TRACKING) {
         alert("Impossible to set a tracking mode if the camera is not of tracking type");
         throw("Impossible to set a tracking mode if the camera is not of tracking type");
     }
@@ -5502,71 +5578,71 @@ nucleo.Camera.prototype.setTrackingMode = function(mode){
 /**
  * Follows a given actor. If this operation is called on an ORBITING camera,
  * the camera mode will change to be a TRACKING camera.
- * 
+ *
  * @param {Actor, String} actor actor to track (It can be the actor name or the actor instance)
  * @param {String} trackingType one of the possible values of <code>Camera.TRACKING</code>
  * @see {Camera#setType}
  */
-nucleo.Camera.prototype.follow = function(actor, trackingType){
+nucleo.Camera.prototype.follow = function (actor, trackingType) {
 
     var instance;
 
     this.setType(nucleo.Camera.TYPE.TRACKING, trackingType);
-    
-    if (actor instanceof nucleo.Actor){
+
+    if (actor instanceof nucleo.Actor) {
         instance = actor;
     }
-    else if (typeof(actor) == 'string'){
+    else if (typeof(actor) == 'string') {
         instance = this.view.scene.getActorByName(actor);
     }
 
-    if (instance == undefined){
-            console.error('Camera.follow ERROR: The actor '+actor+' does not exist');
+    if (instance == undefined) {
+        console.error('Camera.follow ERROR: The actor ' + actor + ' does not exist');
     }
-    else{
+    else {
         this._following = instance;
         instance.addTrackingCamera(this);
     }
-        
+
     return this;
 };
 
 /**
- * Stops following an actor  
+ * Stops following an actor
  */
-nucleo.Camera.prototype.unfollow = function(){
+nucleo.Camera.prototype.unfollow = function () {
     this._following.removeTrackingCamera(this);
     this._following = undefined;
     return this;
 };
 
 /**
- * Updates the camera according to the current tracking mode. This method is a callback used by the 
+ * Updates the camera according to the current tracking mode. This method is a callback used by the
  * Actor class to notify the camera of any actor transformations. This is applicable of course only when
  * this camera is following the actor passed as parameter here
  * @param {Actor} actor the actor being followed by this camera
  */
-nucleo.Camera.prototype.updateWithActor = function(actor){
+nucleo.Camera.prototype.updateWithActor = function (actor) {
     if (this._following != actor) return; //fail safe
 
     var Camera = nucleo.Camera;
-    
-    switch(this._trackingMode){
+
+    switch (this._trackingMode) {
         case Camera.TRACKING.DEFAULT:
-                break;
+            break;
         case Camera.TRACKING.ROTATIONAL:
         case Camera.TRACKING.CINEMATIC:
-                this.setFocalPoint(actor._position);
-                break;
+            this.setFocalPoint(actor._position);
+            break;
         case Camera.TRACKING.TRANSLATIONAL:
-                this.translate(actor._translation);  
-                this.setFocalPoint(actor._position);      
-                break;
+            this.translate(actor._translation);
+            this.setFocalPoint(actor._position);
+            break;
     }
 };
 /**
  *<p>Sets the camera position in the scene
- * This method has three parameters x,y,z which represent the coordinates for 
+ * This method has three parameters x,y,z which represent the coordinates for
  * the camera's position.
  * </p>
  * <p>
@@ -5574,45 +5650,45 @@ nucleo.Camera.prototype.updateWithActor = function(actor){
  * focal point after this operation. If you want to move the camera position and the focal point
  * simultaneously, then use <code>Camera.translate</code>.
  * </p>
- *  
- *  * @param {Number, Array} x the x-coordinate. x can also be an Array [a,b,c] in this case the y and z parameters are discarded.
+ *
+ * @param {Number, Array} x the x-coordinate. x can also be an Array [a,b,c] in this case the y and z parameters are discarded.
  * @param {Number} y the y-coordinate
  * @param {Number} z the z-coordinate
  * @see{Camera#translate}
  */
-nucleo.Camera.prototype.setPosition = function(x,y,z) {
-    this._setPosition(x,y,z);
+nucleo.Camera.prototype.setPosition     = function (x, y, z) {
+    this._setPosition(x, y, z);
     this.setFocalPoint(this._focalPoint);
     return this;
 };
 
 /**
  * Looks at a given point in space (sets the focal point of this camera).
- * 
+ *
  * Note: If the camera is doing cinematic tracking, the up vector will be affected.
  * @param {Number, Array, vec3} x it can be the x coordinate, a 3-dimensional Array or a vec3 (glMatrix)
  * @param {Number} y if x is a number, then this parameter corresponds to the y-coordinate
  * @param {Number} z if x is a number, then this parameter corresponds to the z-coordinate
  */
-nucleo.Camera.prototype.setFocalPoint = function(x,y,z) {
-    
-    var up = vec3.fromValues(0,1,0);
+nucleo.Camera.prototype.setFocalPoint = function (x, y, z) {
+
+    var up = vec3.fromValues(0, 1, 0);
     //var up = vec3.create(this._up);
-    this._focalPoint = nucleo.util.createVec3(x,y,z);
-    
-    if (this._trackingMode == nucleo.Camera.TRACKING.CINEMATIC){
+    this._focalPoint = nucleo.util.createVec3(x, y, z);
+
+    if (this._trackingMode == nucleo.Camera.TRACKING.CINEMATIC) {
         var d  = vec3.subtract(vec3.create(), this._focalPoint, this._position);
-        var x  = d[0], y = d[1],  z = d[2],  r  = vec3.length(d);
-        var el =      Math.asin(y/r)  * nucleo.define.RAD_2_DEG;
-        var az = 90 + Math.atan2(z,x) * nucleo.define.RAD_2_DEG;
-        var m = mat4.create();
+        var x  = d[0], y = d[1], z = d[2], r = vec3.length(d);
+        var el = Math.asin(y / r) * nucleo.define.RAD_2_DEG;
+        var az = 90 + Math.atan2(z, x) * nucleo.define.RAD_2_DEG;
+        var m  = mat4.create();
         mat4.rotateY(m, m, az * nucleo.define.DEG_2_RAD);
         mat4.rotateX(m, m, el * nucleo.define.DEG_2_RAD);
-        up = vec3.transformMat4(vec3.create(), [0,1,0], m);
+        up     = vec3.transformMat4(vec3.create(), [0, 1, 0], m);
     }
-    
+
     mat4.invert(this._matrix, mat4.lookAt(mat4.create(), this._position, this._focalPoint, up));
-    
+
     this._getAxes();
     this._getDistance();
     this._getAngles();
@@ -5624,32 +5700,32 @@ nucleo.Camera.prototype.setFocalPoint = function(x,y,z) {
  * @param {Number} d the distance
  * @TODO: REVIEW COMMENTED CODE
  */
-nucleo.Camera.prototype.setDistance = function(d) {
-    
-    if(this._distance == d || d <0) {
+nucleo.Camera.prototype.setDistance = function (d) {
+
+    if (this._distance == d || d < 0) {
         return;
     }
 
     this._distance = d;
 
     // Distance should be greater than .0002
-    if(this._distance < 0.0002) {
+    if (this._distance < 0.0002) {
         this._distance = 0.0002;
         console.warn("Camera.setDistance WARN: Distance is set to minimum (0.0002)");
     }
-    
+
     this._dollyingStep = this._distance / 100;
-    
+
     var pos = vec3.create();
-    
-    d = this._distance;
+
+    d     = this._distance;
     var n = this._forward;
     var f = this._focalPoint;
-    
-    pos[0] = d*n[0] + f[0];
-    pos[1] = d*n[1] + f[1];
-    pos[2] = d*n[2] + f[2];
-    
+
+    pos[0] = d * n[0] + f[0];
+    pos[1] = d * n[1] + f[1];
+    pos[2] = d * n[2] + f[2];
+
     this._setPosition(pos);
     return this;
 };
@@ -5658,7 +5734,7 @@ nucleo.Camera.prototype.setDistance = function(d) {
  * Changes the initial azimuth of the camera
  * @param {Number} el the azimuth increment in degrees
  */
-nucleo.Camera.prototype.changeAzimuth = function(az){
+nucleo.Camera.prototype.changeAzimuth = function (az) {
     this.setAzimuth(this._azimuth + az);
     return this;
 };
@@ -5667,7 +5743,7 @@ nucleo.Camera.prototype.changeAzimuth = function(az){
  * Changes the initial elevation of the camera
  * @param {Number} el the elevation increment in degrees
  */
-nucleo.Camera.prototype.changeElevation = function(el){
+nucleo.Camera.prototype.changeElevation = function (el) {
     this.setElevation(this._elevation + el);
     return this;
 };
@@ -5677,7 +5753,7 @@ nucleo.Camera.prototype.changeElevation = function(el){
  * Changes the initial roll of the camera
  * @param {Number} rl the roll increment in degrees
  */
-nucleo.Camera.prototype.changeRoll = function(rl){
+nucleo.Camera.prototype.changeRoll = function (rl) {
     this.setRoll(this._roll + rl);
     return this;
 };
@@ -5685,35 +5761,39 @@ nucleo.Camera.prototype.changeRoll = function(rl){
  * Sets the initial azimuth of the camera
  * @param {Number} el the azimuth in degrees
  */
-nucleo.Camera.prototype.setAzimuth = function(az){
+nucleo.Camera.prototype.setAzimuth = function (az) {
 
     this._azimuth = this._getAngle(az);
     this._computeMatrix();
-    
+
     this._getAxes();
-    if (this.type == nucleo.Camera.TYPE.ORBITING || this.type == nucleo.Camera.TYPE.EXPLORING){
+    if (this.type == nucleo.Camera.TYPE.ORBITING || this.type == nucleo.Camera.TYPE.EXPLORING) {
         this._getPosition();
     }
-    else if (this.type == nucleo.Camera.TYPE.TRACKING){
+    else if (this.type == nucleo.Camera.TYPE.TRACKING) {
         this._getFocalPoint();
     }
     return this;
 };
 
+nucleo.Camera.prototype.getAzimuth = function(){
+    return this._azimuth;
+}
+
 /**
  * Sets the initial elevation of the camera
  * @param {Number} el the elevation in degrees
  */
-nucleo.Camera.prototype.setElevation = function(el){
+nucleo.Camera.prototype.setElevation = function (el) {
 
-    this._elevation =this._getAngle(el);
+    this._elevation = this._getAngle(el);
     this._computeMatrix();
-    
+
     this._getAxes();
-    if (this.type == nucleo.Camera.TYPE.ORBITING || this.type == nucleo.Camera.TYPE.EXPLORING){
+    if (this.type == nucleo.Camera.TYPE.ORBITING || this.type == nucleo.Camera.TYPE.EXPLORING) {
         this._getPosition();
     }
-    else if (this.type == nucleo.Camera.TYPE.TRACKING){
+    else if (this.type == nucleo.Camera.TYPE.TRACKING) {
         this._getFocalPoint();
     }
     return this;
@@ -5724,18 +5804,18 @@ nucleo.Camera.prototype.setElevation = function(el){
  * Rotates the camera around its view (forward) axis
  * @param {Number} angle the roll angle
  */
-nucleo.Camera.prototype.setRoll = function(angle){
+nucleo.Camera.prototype.setRoll = function (angle) {
 
     var Camera = nucleo.Camera;
 
     this._roll = this._getAngle(angle);
     this._computeMatrix();
-       
+
     this._getAxes();
-    if (this.type == Camera.TYPE.ORBITING || this.type == Camera.TYPE.EXPLORING){
+    if (this.type == Camera.TYPE.ORBITING || this.type == Camera.TYPE.EXPLORING) {
         this._getPosition();
     }
-    else if (this.type == Camera.TYPE.TRACKING){
+    else if (this.type == Camera.TYPE.TRACKING) {
         this._getFocalPoint();
     }
     return this;
@@ -5747,56 +5827,56 @@ nucleo.Camera.prototype.setRoll = function(angle){
  * @param {Number} elevation the relative elevation
  * @param {Number} roll the relative roll
  */
-nucleo.Camera.prototype.rotate = function(azimuth,elevation,roll){
+nucleo.Camera.prototype.rotate = function (azimuth, elevation, roll) {
 
     var Camera = nucleo.Camera;
-   
-    if (this.type == Camera.TYPE.EXPLORING){
-        
+
+    if (this.type == Camera.TYPE.EXPLORING) {
+
         azimuth   = this._getAngle(azimuth);
         elevation = this._getAngle(elevation);
         roll      = this._getAngle(roll);
-        
-        var rotX  = quat.setAxisAngle(quat.create(), [1,0,0],-elevation * nucleo.define.DEG_2_RAD);
-        var rotY  = quat.setAxisAngle(quat.create(), [0,1,0],-azimuth   * nucleo.define.DEG_2_RAD);
-        
-        if (this._rotate_world){
-        	rotX = quat.setAxisAngle(quat.create(), [1,0,0], elevation * nucleo.define.DEG_2_RAD);
-        	rotY = quat.setAxisAngle(quat.create(), [0,1,0], azimuth   * nucleo.define.DEG_2_RAD);
+
+        var rotX = quat.setAxisAngle(quat.create(), [1, 0, 0], -elevation * nucleo.define.DEG_2_RAD);
+        var rotY = quat.setAxisAngle(quat.create(), [0, 1, 0], -azimuth * nucleo.define.DEG_2_RAD);
+
+        if (this._rotate_world) {
+            rotX = quat.setAxisAngle(quat.create(), [1, 0, 0], elevation * nucleo.define.DEG_2_RAD);
+            rotY = quat.setAxisAngle(quat.create(), [0, 1, 0], azimuth * nucleo.define.DEG_2_RAD);
         }
-        
-        var rotZ = quat.setAxisAngle(quat.create(), [0,0,1], roll      * nucleo.define.DEG_2_RAD);
+
+        var rotZ = quat.setAxisAngle(quat.create(), [0, 0, 1], roll * nucleo.define.DEG_2_RAD);
         var rotQ = quat.multiply(quat.create(), rotY, rotX);
-        
-        rotQ = quat.multiply(quat.create(), rotQ, rotZ);
-        var rotMatrix = mat4.fromQuat(mat4.create(),rotQ);
-        mat4.translate(this._matrix, this._matrix, [0,0,-this._distance]);
-        mat4.multiply (this._matrix, this._matrix, rotMatrix);
-        mat4.translate(this._matrix, this._matrix, [0,0,this._distance]);
+
+        rotQ          = quat.multiply(quat.create(), rotQ, rotZ);
+        var rotMatrix = mat4.fromQuat(mat4.create(), rotQ);
+        mat4.translate(this._matrix, this._matrix, [0, 0, -this._distance]);
+        mat4.multiply(this._matrix, this._matrix, rotMatrix);
+        mat4.translate(this._matrix, this._matrix, [0, 0, this._distance]);
     }
     else {
         if (Math.abs(this._elevation + elevation) > 90) return; //don't allow
         this._relElevation = this._getAngle(elevation);
-        this._relAzimuth = this._getAngle(azimuth);
-        this._relRoll = this._getAngle(roll);
+        this._relAzimuth   = this._getAngle(azimuth);
+        this._relRoll      = this._getAngle(roll);
         this._elevation += this._relElevation;
         this._azimuth += this._relAzimuth;
         this._roll += this._relRoll;
-        
+
         this._computeMatrix();
     }
-    
-       
+
+
     this._getAxes();
-    if (this.type == Camera.TYPE.ORBITING || this.type == Camera.TYPE.EXPLORING){
+    if (this.type == Camera.TYPE.ORBITING || this.type == Camera.TYPE.EXPLORING) {
         this._getPosition();
     }
-    else if (this.type == Camera.TYPE.TRACKING){
+    else if (this.type == Camera.TYPE.TRACKING) {
         this._getFocalPoint();
     }
-    
-   this._update();
-   return this;
+
+    this._update();
+    return this;
 };
 
 
@@ -5805,26 +5885,26 @@ nucleo.Camera.prototype.rotate = function(azimuth,elevation,roll){
  * The dollying mechanism offered by a camera makes sure that the camera moves fast
  * towards the object when the distance is large and slow when it is very close to the object.
  * For that effect, every time that the new position  (after dollying) is calculated, the field dstep is computed.
- * 
- * @param {Number} value the dollying value 
- * 
+ *
+ * @param {Number} value the dollying value
+ *
  */
-nucleo.Camera.prototype.dolly = function(value) {
+nucleo.Camera.prototype.dolly = function (value) {
 
     var Camera = nucleo.Camera;
 
-    var   n =  this._forward;
-    var pos = vec3.clone(this._position);
-    var step = value*this._dollyingStep;
-    pos[0] += step*n[0];
-    pos[1] += step*n[1];
-    pos[2] += step*n[2];
-    
+    var n    = this._forward;
+    var pos  = vec3.clone(this._position);
+    var step = value * this._dollyingStep;
+    pos[0] += step * n[0];
+    pos[1] += step * n[1];
+    pos[2] += step * n[2];
+
     this._setPosition(pos);
-    if (this.type == Camera.TYPE.ORBITING || this.type == Camera.TYPE.EXPLORING){
+    if (this.type == Camera.TYPE.ORBITING || this.type == Camera.TYPE.EXPLORING) {
         this._getDistance();
     }
-    else if (this.type == Camera.TYPE.TRACKING){
+    else if (this.type == Camera.TYPE.TRACKING) {
         //move the focal point and keep the distance
         vec3.add(this._focalPoint, pos, this._distanceVector);
     }
@@ -5836,37 +5916,35 @@ nucleo.Camera.prototype.dolly = function(value) {
  * @param {Number} dx the horizontal displacement
  * @param {Number} dy the vertical displacement
  */
-nucleo.Camera.prototype.pan = function(tx, ty) {
-    
-    var coords = nucleo.util.createVec3(tx,ty,0);
-    var pos = vec3.clone(this._position);
-    
-    vec3.add(pos, pos, vec3.scale(vec3.create(), this._right  ,coords[0]));
-    vec3.add(pos, pos, vec3.scale(vec3.create(), this._up     ,coords[1]));    
-    
+nucleo.Camera.prototype.pan = function (tx, ty) {
+
+    var coords = nucleo.util.createVec3(tx, ty, 0);
+    var pos    = vec3.clone(this._position);
+
+    vec3.add(pos, pos, vec3.scale(vec3.create(), this._right, coords[0]));
+    vec3.add(pos, pos, vec3.scale(vec3.create(), this._up, coords[1]));
+
     this._setPosition(pos);
-    
+
     return this;
 };
 
 /**
- * Translates the camera by a given vector 
- * 
+ * Translates the camera by a given vector
+ *
  * @param {Number, Array, vec3} x it can be the x coordinate, a 3-dimensional Array or a vec3 (glMatrix)
  * @param {Number} y if x is a number, then this parameter corresponds to the y-coordinate
  * @param {Number} z if x is a number, then this parameter corresponds to the z-coordinate
  */
-nucleo.Camera.prototype.translate = function(x,y,z){
-    
-    var coords = nucleo.util.createVec3(x,y,z);
-    var pos = vec3.clone(this._position);
-    
-    vec3.add(pos,pos, coords);
+nucleo.Camera.prototype.translate = function (x, y, z) {
+
+    var coords = nucleo.util.createVec3(x, y, z);
+    var pos    = vec3.clone(this._position);
+
+    vec3.add(pos, pos, coords);
     this._setPosition(pos);
     return this;
 };
-
-
 
 
 /**
@@ -5874,9 +5952,9 @@ nucleo.Camera.prototype.translate = function(x,y,z){
  * This is the call stack:
  * Camera.refresh -> View.refresh -> Renderer.render
  */
-nucleo.Camera.prototype.refresh = function() {
-	this.view.refresh();
-	return this;
+nucleo.Camera.prototype.refresh = function () {
+    this.view.refresh();
+    return this;
 };
 
 
@@ -5884,21 +5962,21 @@ nucleo.Camera.prototype.refresh = function() {
  *  Looks at a given actor without displacing the camera
  *  @param {String, Actor} actor The name of the actor or the actor object this camera will look at.
  */
-nucleo.Camera.prototype.lookAt = function(actor){
+nucleo.Camera.prototype.lookAt = function (actor) {
 
-    if (actor instanceof nucleo.Actor){
-          this.setFocalPoint(actor._position);
+    if (actor instanceof nucleo.Actor) {
+        this.setFocalPoint(actor._position);
     }
 
-    else if (typeof(actor) == 'string'){
+    else if (typeof(actor) == 'string') {
         var actor = this.view.scene.getActorByName(actor);
-        if (actor == undefined){
-            throw 'Camera.lookAt ERROR: The actor '+actorName+' does not exist'
+        if (actor == undefined) {
+            throw 'Camera.lookAt ERROR: The actor ' + actorName + ' does not exist'
         }
-        else{
+        else {
             this.setFocalPoint(actor._position);
         }
-    }  
+    }
     return this;
 };
 
@@ -5908,30 +5986,30 @@ nucleo.Camera.prototype.lookAt = function(actor){
  *  @param {String, Actor}  actor The name of the actor or the actor object this camera will look at.
  *  @see <a href="http://en.wikipedia.org/wiki/Close-up">Close-up (Wikipedia)</a>
  */
-nucleo.Camera.prototype.closeUp = function(actor){
-	if (actor instanceof nucleo.Actor){
+nucleo.Camera.prototype.closeUp = function (actor) {
+    if (actor instanceof nucleo.Actor) {
         this._shot(actor._bb);
     }
-    else if (typeof(actor) == 'string'){
+    else if (typeof(actor) == 'string') {
         var actor = this.view.scene.getActorByName(actor);
-        if (actor == undefined){
-            throw 'Camera.lookAt ERROR: The actor '+actorName+' does not exist'
+        if (actor == undefined) {
+            throw 'Camera.lookAt ERROR: The actor ' + actorName + ' does not exist'
         }
-        else{
-	       this._shot(actor._bb);
-	    }
-	}	
-	return this;
+        else {
+            this._shot(actor._bb);
+        }
+    }
+    return this;
 };
 
 /**
  * The camera moves to a position where all the actors in the scene are viewed. The actors
  * are seen in full within their surrounding environment.
- * 
+ *
  * A long shot uses the global bounding box of the view's scene
  * @see <a href="http://en.wikipedia.org/wiki/Long_shot">Long Shot (Wikipedia)</a>
  */
-nucleo.Camera.prototype.longShot = function() {
+nucleo.Camera.prototype.longShot = function () {
     this.view.scene.computeBoundingBox(); //perfect example of BY DEMAND UPDATING OF BB
     this._shot(this.view.scene.bb);
     return this;
@@ -5939,11 +6017,11 @@ nucleo.Camera.prototype.longShot = function() {
 
 /**
  * Changes the field of view of the  camera
- * 
- * @param{Number} fov the field of view in degrees [0-360] 
+ *
+ * @param{Number} fov the field of view in degrees [0-360]
  * @see <a href="http://en.wikipedia.org/wiki/Angle_of_view">Angle of view</a>
  */
-nucleo.Camera.prototype.setFieldOfView = function(fov){
+nucleo.Camera.prototype.setFieldOfView = function (fov) {
     this._fov = fov;
     return this;
 };
@@ -5956,17 +6034,17 @@ nucleo.Camera.prototype.setFieldOfView = function(fov){
  * @param {Array, vec3} focalPoint the desired focalPoint for the camera at the landmark
  * @see Landmark
  */
-nucleo.Camera.prototype.createLandmark = function(name, position, focalPoint, roll){
-	
-	var c = new Camera(this.view, this.type);
-	c.setPosition(position);
-	c.setFocalPoint(focalPoint);
-	if (roll != undefined){
-	    c.setRoll(roll);
-	}
-	var l = new Landmark(name, c);
-	this.landmarks.push(l);
-	return this;
+nucleo.Camera.prototype.createLandmark = function (name, position, focalPoint, roll) {
+
+    var c = new Camera(this.view, this.type);
+    c.setPosition(position);
+    c.setFocalPoint(focalPoint);
+    if (roll != undefined) {
+        c.setRoll(roll);
+    }
+    var l = new Landmark(name, c);
+    this.landmarks.push(l);
+    return this;
 };
 
 /**
@@ -5974,8 +6052,8 @@ nucleo.Camera.prototype.createLandmark = function(name, position, focalPoint, ro
  * @param {String} name the landmark name
  * @see Landmark
  */
-nucleo.Camera.prototype.setLandmark = function(name) {
-    var l = new Landmark (name, this);
+nucleo.Camera.prototype.setLandmark = function (name) {
+    var l = new Landmark(name, this);
     this.landmarks.push(l);
     return this;
 };
@@ -5984,93 +6062,97 @@ nucleo.Camera.prototype.setLandmark = function(name) {
 /**
  * Retrieves the landmark by name from the known landmarks
  * @param {String} name the landmark name
- * @param {Number} length (optional) the duration of the animation 
- * @param {Number} fps (optional) the number of frames per second (estmate)  
+ * @param {Number} length (optional) the duration of the animation
+ * @param {Number} fps (optional) the number of frames per second (estmate)
  * two landmarks.
  * @see Landmark
  */
-nucleo.Camera.prototype.gotoLandmark = function(name,length,fps) {
-	
-	var lmark = undefined;
-	var i = this.landmarks.length;
-	while(i--){
-        if (this.landmarks[i].name == name){
-        	lmark = this.landmarks[i];
-        	break;
-        }
-	}
-	
-	if (lmark == undefined){
-		console.warn('Camera.goTo: landmark with name: '+name+', was not found');
-		return;
-	}
-    
-	if (length == undefined || length == 0){
-		lmark.retrieve(this);
-        return;
-	}
-	
-	if (this._lmarkAnimationID != undefined){
-		window.clearTimeout(this._lmarkAnimationID);
-	}
-	
-	var self = this;
-	var dest_pos = lmark._position;
-	var dest_fp = lmark._focalPoint;
-	var dest_roll = lmark._roll;
-	
-	if (length == undefined){ length = 1000; }
-	if (fps == undefined) {fps ==  20; } 
-	
-	var interactor = this.view.interactor;
-	interactor.disconnectFromView(); //do not process events during animation
-	
-	function animate(length, resolution){
-		var steps = (length / 100) * (resolution / 10),
-        speed = length / steps,
-        count = 0,
-        start = new Date().getTime();
+nucleo.Camera.prototype.gotoLandmark        = function (name, length, fps) {
 
-		function iteration(){
-			
-			var inter_fp = vec3.create();
-			var inter_pos = vec3.create();
-			var inter_roll = 0;
-			if(count++ != steps){
-				percent = count/steps;
-				percent2 = (1-Math.cos(percent*Math.PI))/2; //cosine interpolation is smoother
-				inter_fp = vec3.lerp(inter_fp, self._focalPoint, dest_fp,percent2);
-				inter_pos = vec3.lerp(inter_pos, self._position, dest_pos,percent2);
-				inter_roll = self._roll * (1 - percent2) + dest_roll * (percent2);
-				
-				self.setFocalPoint(inter_fp);
-				self.setPosition(inter_pos);
-				self.setRoll(inter_roll);
-				self.refresh();
-				
-				var dist = vec3.dist(inter_fp,dest_fp) + vec3.dist(inter_pos,dest_pos);
-				if (dist >0.01){
-					var diff = (new Date().getTime() - start) - (count * speed);
-					self._lmarkAnimationID = window.setTimeout(iteration, (speed - diff));
-				}
-				else{
-					self.setFocalPoint(dest_fp);
-					self.setPosition(dest_pos);
-					self.setRoll(dest_roll);
-					self.refresh();
-					interactor.connectView(this.view); //reconnect interactor
-				}
-				return;
-			}
-		};
-		
-		//first time invocation
-		self._lmarkAnimationID = window.setTimeout(iteration, speed);
-	}
-	
-	animate(length,fps);
-	return this; 
-	
+    var lmark = undefined;
+    var i     = this.landmarks.length;
+    while (i--) {
+        if (this.landmarks[i].name == name) {
+            lmark = this.landmarks[i];
+            break;
+        }
+    }
+
+    if (lmark == undefined) {
+        console.warn('Camera.goTo: landmark with name: ' + name + ', was not found');
+        return;
+    }
+
+    if (length == undefined || length == 0) {
+        lmark.retrieve(this);
+        return;
+    }
+
+    if (this._lmarkAnimationID != undefined) {
+        window.clearTimeout(this._lmarkAnimationID);
+    }
+
+    var self      = this;
+    var dest_pos  = lmark._position;
+    var dest_fp   = lmark._focalPoint;
+    var dest_roll = lmark._roll;
+
+    if (length == undefined) {
+        length = 1000;
+    }
+    if (fps == undefined) {
+        fps == 20;
+    }
+
+    var interactor = this.view.interactor;
+    interactor.disconnectFromView(); //do not process events during animation
+
+    function animate(length, resolution) {
+        var steps = (length / 100) * (resolution / 10),
+            speed = length / steps,
+            count = 0,
+            start = new Date().getTime();
+
+        function iteration() {
+
+            var inter_fp   = vec3.create();
+            var inter_pos  = vec3.create();
+            var inter_roll = 0;
+            if (count++ != steps) {
+                percent  = count / steps;
+                percent2 = (1 - Math.cos(percent * Math.PI)) / 2; //cosine interpolation is smoother
+                inter_fp   = vec3.lerp(inter_fp, self._focalPoint, dest_fp, percent2);
+                inter_pos  = vec3.lerp(inter_pos, self._position, dest_pos, percent2);
+                inter_roll = self._roll * (1 - percent2) + dest_roll * (percent2);
+
+                self.setFocalPoint(inter_fp);
+                self.setPosition(inter_pos);
+                self.setRoll(inter_roll);
+                self.refresh();
+
+                var dist = vec3.dist(inter_fp, dest_fp) + vec3.dist(inter_pos, dest_pos);
+                if (dist > 0.01) {
+                    var diff               = (new Date().getTime() - start) - (count * speed);
+                    self._lmarkAnimationID = window.setTimeout(iteration, (speed - diff));
+                }
+                else {
+                    self.setFocalPoint(dest_fp);
+                    self.setPosition(dest_pos);
+                    self.setRoll(dest_roll);
+                    self.refresh();
+                    interactor.connectView(this.view); //reconnect interactor
+                }
+                return;
+            }
+        };
+
+        //first time invocation
+        self._lmarkAnimationID = window.setTimeout(iteration, speed);
+    }
+
+    animate(length, fps);
+    return this;
+
 };
 /**
  * The animation map has one entry per gotoLandmark step
@@ -6080,53 +6162,53 @@ nucleo.Camera.prototype.gotoLandmark = function(name,length,fps) {
  *           ['landmark_N,duration_N,fps_N]];
  * }
  */
-nucleo.Camera.prototype.doLandmarkAnimation = function(steps){
-	
-	var _steps = steps.slice(0); //copy so we can destroy it
-	var camera = this;
-	
-	function processStep(){
-		if (_steps.length ==0){
-			return;
-		}
-		
-		if (camera._stop_lmark_animation){
-		    camera._stop_lmark_animation = false;
-		    nucleo.util.console('Landmark Animation Stopped',true);
-		    return;
-		}
-		
-		step = _steps.splice(0,1)[0];
+nucleo.Camera.prototype.doLandmarkAnimation = function (steps) {
 
-		lmark = step[0];
-		duration = step[1];
-		fps = step[2];
-		camera.gotoLandmark(lmark,duration,fps);
-		window.setTimeout(processStep,duration);
-	}
-	
-	processStep();
-	return this;
+    var _steps = steps.slice(0); //copy so we can destroy it
+    var camera = this;
+
+    function processStep() {
+        if (_steps.length == 0) {
+            return;
+        }
+
+        if (camera._stop_lmark_animation) {
+            camera._stop_lmark_animation = false;
+            nucleo.util.console('Landmark Animation Stopped', true);
+            return;
+        }
+
+        step = _steps.splice(0, 1)[0];
+
+        lmark    = step[0];
+        duration = step[1];
+        fps      = step[2];
+        camera.gotoLandmark(lmark, duration, fps);
+        window.setTimeout(processStep, duration);
+    }
+
+    processStep();
+    return this;
 };
 
 
 /**
  * If there is a landmark based animation in progress it will stop it.
  */
-nucleo.Camera.prototype.stopLandmarkAnimation = function(){
+nucleo.Camera.prototype.stopLandmarkAnimation = function () {
     this._stop_lmark_animation = true;
 };
 
 /**
  * Returns a list of known landmarks
  */
-nucleo.Camera.prototype.getLandmarks = function(){
-  var lmarks = [];
-  var i = this.landmarks.length;
-  while(i--){
-      lmarks.push(this.landmarks[i].name);
-  }
-  return lmarks;  
+nucleo.Camera.prototype.getLandmarks = function () {
+    var lmarks = [];
+    var i      = this.landmarks.length;
+    while (i--) {
+        lmarks.push(this.landmarks[i].name);
+    }
+    return lmarks;
 };
 
 /**
@@ -6134,69 +6216,69 @@ nucleo.Camera.prototype.getLandmarks = function(){
  * is viewed.
  * @param {BoundingBox} bb the bounding box
  */
-nucleo.Camera.prototype._shot = function(bb){
-    
+nucleo.Camera.prototype._shot = function (bb) {
+
     this.setElevation(0);
     this.setAzimuth(0);
     this.setRoll(0);
-    
-	var maxDim = Math.max(bb[3] - bb[0], bb[4] - bb[1]);
-	
-	cc = [0,0,0];
 
-	cc[0] = (bb[3] + bb[0]) /2;
-	cc[1] = (bb[4] + bb[1]) /2;
-	cc[2] = (bb[5] + bb[2]) /2;
-		
-	cc[0] = Math.round(cc[0]*1000)/1000;
-	cc[1] = Math.round(cc[1]*1000)/1000;
-	cc[2] = Math.round(cc[2]*1000)/1000;
-	
-	if(maxDim != 0) {
-		var d = 1.5 * maxDim / (Math.tan(this._fov * Math.PI / 180));
-		this.setPosition([cc[0], cc[1], cc[2]+ d]);
-	}
-	
-	this.setFocalPoint(cc);
-	this.refresh();
+    var maxDim = Math.max(bb[3] - bb[0], bb[4] - bb[1]);
+
+    cc = [0, 0, 0];
+
+    cc[0] = (bb[3] + bb[0]) / 2;
+    cc[1] = (bb[4] + bb[1]) / 2;
+    cc[2] = (bb[5] + bb[2]) / 2;
+
+    cc[0] = Math.round(cc[0] * 1000) / 1000;
+    cc[1] = Math.round(cc[1] * 1000) / 1000;
+    cc[2] = Math.round(cc[2] * 1000) / 1000;
+
+    if (maxDim != 0) {
+        var d = 1.5 * maxDim / (Math.tan(this._fov * Math.PI / 180));
+        this.setPosition([cc[0], cc[1], cc[2] + d]);
+    }
+
+    this.setFocalPoint(cc);
+    this.refresh();
 };
 
 
 /**
  * <p>Forces the aspect ratio of the camera to a certain value.</p>
- * <p>To go back to the default aspect ratio that relies on the dimensions 
+ * <p>To go back to the default aspect ratio that relies on the dimensions
  * of the view associated to this camera use:
- * 
+ *
  * <code>setAspectRatio(undefined)</code>
- * 
+ *
  * </p>
  * @param {Number} p_aspect the new aspect ratio
  */
-nucleo.Camera.prototype.setAspectRatio = function(p_aspect){
+nucleo.Camera.prototype.setAspectRatio = function (p_aspect) {
     this._aspect = p_aspect;
 }
 
 /**
  * Sets the perspective of the camera. Defines the viewing frustum and its shape
- * @param {Number} p_near the distance from the camera to the near plane 
- * @param {Number} p_far the distance from the camera to the far plane 
+ * @param {Number} p_near the distance from the camera to the near plane
+ * @param {Number} p_far the distance from the camera to the far plane
  * @param {Number} p_angle the vertical field of view in degrees
- * @param {Number} p_aspect the desired aspect ratio (optional). If not defined the camera 
+ * @param {Number} p_aspect the desired aspect ratio (optional). If not defined the camera
  * automatically selects the current width/height radio of the respective view.
  */
-nucleo.Camera.prototype.setPerspective = function(p_near, p_far, p_angle, p_aspect){
+nucleo.Camera.prototype.setPerspective = function (p_near, p_far, p_angle, p_aspect) {
     var view = this.view;
-    
-    this._fov = p_angle;
-    this._near = p_near;
-    this._far = p_far;
+
+    this._fov    = p_angle;
+    this._near   = p_near;
+    this._far    = p_far;
     this._aspect = p_aspect;
-    var rads = nucleo.util.deg2rad(p_angle);
-    
-    if(this._aspect == undefined){ 
-        mat4.perspective(this._perspective, rads, view.width/view.height, this._near, this._far);   
+    var rads     = nucleo.util.deg2rad(p_angle);
+
+    if (this._aspect == undefined) {
+        mat4.perspective(this._perspective, rads, view.width / view.height, this._near, this._far);
     }
-    else{
+    else {
         mat4.perspective(this._perspective, rads, this._aspect, this._near, this._far);
     }
 };
@@ -6204,15 +6286,15 @@ nucleo.Camera.prototype.setPerspective = function(p_near, p_far, p_angle, p_aspe
 /**
  * Updates the current perspective matrix when one of the internal perspective variables
  * [near,far,fov] has changed, or when the view has changed its dimensions [width, height]
- * 
+ *
  */
-nucleo.Camera.prototype.updatePerspective = function(){
+nucleo.Camera.prototype.updatePerspective = function () {
     var view = this.view;
     var rads = nucleo.util.deg2rad(this._fov);
-    if(this._aspect == undefined){ 
-        mat4.perspective(this._perspective, rads, view.width/view.height, this._near, this._far);   
+    if (this._aspect == undefined) {
+        mat4.perspective(this._perspective, rads, view.width / view.height, this._near, this._far);
     }
-    else{
+    else {
         mat4.perspective(this._perspective, rads, this._aspect, this._near, this._far);
     }
 };
@@ -6220,20 +6302,20 @@ nucleo.Camera.prototype.updatePerspective = function(){
 /**
  * Prints a summary of the camera variables on the browser's console
  */
-nucleo.Camera.prototype.status = function() {
-	console.info('------------- Camera Status -------------');
-	console.info('       type: ' + this.type);
+nucleo.Camera.prototype.status = function () {
+    console.info('------------- Camera Status -------------');
+    console.info('       type: ' + this.type);
     console.info('      right: ' + nucleo.util.format(this._right, 2));
     console.info('         up: ' + nucleo.util.format(this._up, 2));
-    console.info('    forward: ' + nucleo.util.format(this._forward,2));
-    console.info('   position: ' + nucleo.util.format(this._position,2));
-    console.info('focal point: ' + nucleo.util.format(this._focalPoint,2));
-    
-    console.info('    azimuth: ' + nucleo.util.format(this._azimuth,2));
-    console.info('  elevation: ' + nucleo.util.format(this._elevation,2));
-    console.info('       roll: ' + nucleo.util.format(this._roll,2));
-    console.info('   distance: ' + nucleo.util.format(this._distance,2));
-    console.info('   d vector: ' + nucleo.util.format(this._distanceVector,2));
+    console.info('    forward: ' + nucleo.util.format(this._forward, 2));
+    console.info('   position: ' + nucleo.util.format(this._position, 2));
+    console.info('focal point: ' + nucleo.util.format(this._focalPoint, 2));
+
+    console.info('    azimuth: ' + nucleo.util.format(this._azimuth, 2));
+    console.info('  elevation: ' + nucleo.util.format(this._elevation, 2));
+    console.info('       roll: ' + nucleo.util.format(this._roll, 2));
+    console.info('   distance: ' + nucleo.util.format(this._distance, 2));
+    console.info('   d vector: ' + nucleo.util.format(this._distanceVector, 2));
 };
 
 
@@ -6241,15 +6323,15 @@ nucleo.Camera.prototype.status = function() {
  * Inverts the camera mattrix to obtain the correspondent Model-View Transform
  * @returns {mat4} m the Model-View Transform
  */
-nucleo.Camera.prototype.getViewTransform = function(){
-    return mat4.invert(mat4.create(),this._matrix);
+nucleo.Camera.prototype.getViewTransform = function () {
+    return mat4.invert(mat4.create(), this._matrix);
 };
 
 /**
  * Sets the camera matrix
  * @param {mat4} matrix the new camera matrix
  */
-nucleo.Camera.prototype.setMatrix = function(matrix){
+nucleo.Camera.prototype.setMatrix = function (matrix) {
     this._matrix = matrix;
     this._update();
 };
@@ -6258,42 +6340,42 @@ nucleo.Camera.prototype.setMatrix = function(matrix){
  * Sets the  camera matrix
  * @private
  */
-nucleo.Camera.prototype._computeMatrix = function(){
+nucleo.Camera.prototype._computeMatrix = function () {
 
     var rotX,
         rotY,
-        rotZ  = quat.setAxisAngle(quat.create(), [0,0,1], this._roll * nucleo.define.DEG_2_RAD);
+        rotZ = quat.setAxisAngle(quat.create(), [0, 0, 1], this._roll * nucleo.define.DEG_2_RAD);
 
     mat4.identity(this._matrix);
-    if (this.type == nucleo.Camera.TYPE.TRACKING){
-    	rotX  = quat.setAxisAngle(quat.create(),[1,0,0],this._elevation * nucleo.define.DEG_2_RAD);
-    	rotY  = quat.setAxisAngle(quat.create(),[0,1,0],this._azimuth   * nucleo.define.DEG_2_RAD);
+    if (this.type == nucleo.Camera.TYPE.TRACKING) {
+        rotX = quat.setAxisAngle(quat.create(), [1, 0, 0], this._elevation * nucleo.define.DEG_2_RAD);
+        rotY = quat.setAxisAngle(quat.create(), [0, 1, 0], this._azimuth * nucleo.define.DEG_2_RAD);
     }
     else {
-    	//only consider HCS for EXPLORING and ORBITING cameras
-    	if(this._rotate_world){
-    		rotX  = quat.setAxisAngle(quat.create(),[1,0,0],this._elevation * nucleo.define.DEG_2_RAD);
-    		rotY  = quat.setAxisAngle(quat.create(),[0,1,0],this._azimuth   * nucleo.define.DEG_2_RAD);
-    	} 
-    	else{
-    		rotX  = quat.setAxisAngle(quat.create(),[1,0,0],-this._elevation * nucleo.define.DEG_2_RAD);
-    		rotY  = quat.setAxisAngle(quat.create(),[0,1,0],-this._azimuth   * nucleo.define.DEG_2_RAD);
-    	}
+        //only consider HCS for EXPLORING and ORBITING cameras
+        if (this._rotate_world) {
+            rotX = quat.setAxisAngle(quat.create(), [1, 0, 0], this._elevation * nucleo.define.DEG_2_RAD);
+            rotY = quat.setAxisAngle(quat.create(), [0, 1, 0], this._azimuth * nucleo.define.DEG_2_RAD);
+        }
+        else {
+            rotX = quat.setAxisAngle(quat.create(), [1, 0, 0], -this._elevation * nucleo.define.DEG_2_RAD);
+            rotY = quat.setAxisAngle(quat.create(), [0, 1, 0], -this._azimuth * nucleo.define.DEG_2_RAD);
+        }
     }
-   
-    
-    var rotQ = quat.multiply(quat.create(), rotY, rotX);
-    rotQ = quat.multiply(quat.create(), rotQ, rotZ);
-    var rotMatrix = mat4.fromQuat(mat4.create(),rotQ);
-    
-    if (this.type ==  nucleo.Camera.TYPE.ORBITING || this.type == nucleo.Camera.TYPE.EXPLORING){
+
+
+    var rotQ      = quat.multiply(quat.create(), rotY, rotX);
+    rotQ          = quat.multiply(quat.create(), rotQ, rotZ);
+    var rotMatrix = mat4.fromQuat(mat4.create(), rotQ);
+
+    if (this.type == nucleo.Camera.TYPE.ORBITING || this.type == nucleo.Camera.TYPE.EXPLORING) {
         mat4.translate(this._matrix, this._matrix, this._focalPoint);
         mat4.multiply(this._matrix, this._matrix, rotMatrix);
-        mat4.translate(this._matrix, this._matrix, [0,0,this._distance]);
-    } 
-    else if(this.type ==  nucleo.Camera.TYPE.TRACKING){
+        mat4.translate(this._matrix, this._matrix, [0, 0, this._distance]);
+    }
+    else if (this.type == nucleo.Camera.TYPE.TRACKING) {
         mat4.translate(this._matrix, this._matrix, this._position);
-        mat4.multiply(this._matrix,this._matrix, rotMatrix);
+        mat4.multiply(this._matrix, this._matrix, rotMatrix);
     }
 };
 
@@ -6302,23 +6384,23 @@ nucleo.Camera.prototype._computeMatrix = function(){
  * Sets the camera position in the camera matrix
  * @private
  */
-nucleo.Camera.prototype._setPosition = function(x,y,z){
-    this._position = nucleo.util.createVec3(x,y,z);
-    var m = this._matrix;
-    m[12] = this._position[0];
-    m[13] = this._position[1];
-    m[14] = this._position[2];
-    m[15] = 1;
+nucleo.Camera.prototype._setPosition = function (x, y, z) {
+    this._position = nucleo.util.createVec3(x, y, z);
+    var m          = this._matrix;
+    m[12]          = this._position[0];
+    m[13]          = this._position[1];
+    m[14]          = this._position[2];
+    m[15]          = 1;
 };
 
 /**
  * Recalculates axes based on the current matrix
  * @private
  */
-nucleo.Camera.prototype._getAxes = function(){
-    var m       = this._matrix;
-    vec3.copy(this._right,   vec4.transformMat4(vec4.create(), [1, 0, 0, 0], m));
-    vec3.copy(this._up,      vec4.transformMat4(vec4.create(), [0, 1, 0, 0], m));
+nucleo.Camera.prototype._getAxes = function () {
+    var m = this._matrix;
+    vec3.copy(this._right, vec4.transformMat4(vec4.create(), [1, 0, 0, 0], m));
+    vec3.copy(this._up, vec4.transformMat4(vec4.create(), [0, 1, 0, 0], m));
     vec3.copy(this._forward, vec4.transformMat4(vec4.create(), [0, 0, 1, 0], m));
     vec3.normalize(this._right, this._right);
     vec3.normalize(this._up, this._up);
@@ -6330,8 +6412,8 @@ nucleo.Camera.prototype._getAxes = function(){
  * Called only when camera is of ORBITING type
  * @private
  */
-nucleo.Camera.prototype._getPosition = function(){
-    var m       = this._matrix;
+nucleo.Camera.prototype._getPosition = function () {
+    var m = this._matrix;
     vec3.copy(this._position, vec4.transformMat4(vec4.create(), [0, 0, 0, 1], m));
     this._getDistance();
 };
@@ -6340,57 +6422,57 @@ nucleo.Camera.prototype._getPosition = function(){
  * Called only when camera is of TRACKING type
  * @private
  */
-nucleo.Camera.prototype._getFocalPoint = function(){
-    
-    vec3.transformMat3(this._distanceVector, [0,0,-this._distance], mat3.fromMat4(mat3.create(),this._matrix)); 
+nucleo.Camera.prototype._getFocalPoint = function () {
+
+    vec3.transformMat3(this._distanceVector, [0, 0, -this._distance], mat3.fromMat4(mat3.create(), this._matrix));
     vec3.add(this._focalPoint, this._position, this._distanceVector);
-    this._getDistance();               
+    this._getDistance();
 };
 
 /**
  * Recalculates the distance variables based on the current state
  * @private
  */
-nucleo.Camera.prototype._getDistance = function(){
+nucleo.Camera.prototype._getDistance = function () {
     this._distanceVector = vec3.subtract(vec3.create(), this._focalPoint, this._position);
-    this._distance = vec3.length(this._distanceVector);
-    this._dollyingStep = this._distance / 100;
+    this._distance       = vec3.length(this._distanceVector);
+    this._dollyingStep   = this._distance / 100;
 };
 
 /**
  * Recalculates euler angles based on the current state
  * @private
  */
-nucleo.Camera.prototype._getAngles = function(){
-   
-    
+nucleo.Camera.prototype._getAngles = function () {
+
+
     //Recalculates angles  
-    var x = this._distanceVector[0], y = this._distanceVector[1],  z = this._distanceVector[2];
+    var x = this._distanceVector[0], y = this._distanceVector[1], z = this._distanceVector[2];
     var r = vec3.length(this._distanceVector);
-    
-     //FAST FAIL: If there is no distance we cannot compute angles
-     if (r == 0){
-         this._elevation = 0;
-         this._azimuth   = 0;
-         return;
-     }
-    
-    if (this.type == nucleo.Camera.TYPE.TRACKING){
-    	this._elevation = Math.asin(y/r)    * nucleo.define.RAD_2_DEG;
-        this._azimuth   = Math.atan2(-x,-z) * nucleo.define.RAD_2_DEG;
+
+    //FAST FAIL: If there is no distance we cannot compute angles
+    if (r == 0) {
+        this._elevation = 0;
+        this._azimuth   = 0;
+        return;
+    }
+
+    if (this.type == nucleo.Camera.TYPE.TRACKING) {
+        this._elevation = Math.asin(y / r) * nucleo.define.RAD_2_DEG;
+        this._azimuth   = Math.atan2(-x, -z) * nucleo.define.RAD_2_DEG;
     }
     else {
-    	 if (this._rotate_world){
-    		 this._elevation = Math.asin(y/r)    * nucleo.define.RAD_2_DEG;
-             this._azimuth   = Math.atan2(-x,-z) * nucleo.define.RAD_2_DEG;
-    	 }
-    	 else{
-    		 this._elevation = -1 * Math.asin(y/r)    * nucleo.define.RAD_2_DEG;
-             this._azimuth   = -1 * Math.atan2(-x,-z) * nucleo.define.RAD_2_DEG;
-    		 
-    	 }
+        if (this._rotate_world) {
+            this._elevation = Math.asin(y / r) * nucleo.define.RAD_2_DEG;
+            this._azimuth   = Math.atan2(-x, -z) * nucleo.define.RAD_2_DEG;
+        }
+        else {
+            this._elevation = -1 * Math.asin(y / r) * nucleo.define.RAD_2_DEG;
+            this._azimuth   = -1 * Math.atan2(-x, -z) * nucleo.define.RAD_2_DEG;
+
+        }
     }
-     
+
 };
 
 
@@ -6398,7 +6480,7 @@ nucleo.Camera.prototype._getAngles = function(){
  * Recalculates the camera state from the camera matrix
  * @private
  */
-nucleo.Camera.prototype._update = function(){
+nucleo.Camera.prototype._update = function () {
     this._getAxes();
     this._getPosition();
     this._getDistance();
@@ -6408,30 +6490,30 @@ nucleo.Camera.prototype._update = function(){
 /**
  * @private
  */
-nucleo.Camera.prototype._calculateAngles = function(){
+nucleo.Camera.prototype._calculateAngles = function () {
     var rotM = mat4.toMat3(this._matrix);
-    var Q = mat3.toQuat4(rotM);
-    var x = Q[0], y = Q[1], z = Q[2], w=Q[3];
-    
-    var roll  = Math.atan2(2 * (w * x + y * z),1 - 2 * (x * x + y * y)) * nucleo.define.RAD_2_DEG;
-    var pitch = Math.asin (2 * (w * y - z * y)) * nucleo.define.RAD_2_DEG;
-    var yaw   = Math.atan2(2 * (w * z + x * y), 1 - 2 * (y *y + z * z)) * nucleo.define.RAD_2_DEG;
-    
-    console.info(' roll :' + nucleo.util.format(roll,2));
-    console.info('pitch :' + nucleo.util.format(pitch,2));
-    console.info('  yaw :' + nucleo.util.format(yaw,2));
+    var Q    = mat3.toQuat4(rotM);
+    var x    = Q[0], y = Q[1], z = Q[2], w = Q[3];
+
+    var roll  = Math.atan2(2 * (w * x + y * z), 1 - 2 * (x * x + y * y)) * nucleo.define.RAD_2_DEG;
+    var pitch = Math.asin(2 * (w * y - z * y)) * nucleo.define.RAD_2_DEG;
+    var yaw   = Math.atan2(2 * (w * z + x * y), 1 - 2 * (y * y + z * z)) * nucleo.define.RAD_2_DEG;
+
+    console.info(' roll :' + nucleo.util.format(roll, 2));
+    console.info('pitch :' + nucleo.util.format(pitch, 2));
+    console.info('  yaw :' + nucleo.util.format(yaw, 2));
 };
 
 /**
  * Returns an angle between 0 and 360 degrees
  * @private
  */
-nucleo.Camera.prototype._getAngle = function(angle){
-   
-    if (angle == undefined){
-         return 0;
+nucleo.Camera.prototype._getAngle = function (angle) {
+
+    if (angle == undefined) {
+        return 0;
     }
-    else if (angle > 360 || angle <-360) {
+    else if (angle > 360 || angle < -360) {
         return angle % 360;
     }
     else return angle;
@@ -9061,24 +9143,24 @@ nucleo.RenderTarget.prototype.readPixel = function(x,y){
  * @author Diego Cantor
  */
 nucleo.Model = function Model(name, JSON_OBJECT) {
-    this.UID = nucleo.util.generateUID();
-    this.name = name;
-    this.indices = [];
-    this.vertices = [];
-    this.scalars = undefined;
-    this.diffuse = undefined;
-    this.ambient = undefined;
-    this.specular = undefined;
+    this.UID        = nucleo.util.generateUID();
+    this.name       = name;
+    this.indices    = [];
+    this.vertices   = [];
+    this.scalars    = undefined;
+    this.diffuse    = undefined;
+    this.ambient    = undefined;
+    this.specular   = undefined;
     this.shininness = undefined;
-    this.normals = undefined;
-    this.wireframe = undefined;
-    this.bb = [0, 0, 0, 0, 0, 0];
-    this.centre = [0, 0, 0, 0, 0, 0];
-    this.mode = nucleo.Actor.MODE.SOLID;
-    this.image = undefined;
-    this.uri = undefined;
-    this.colors = undefined;
-    this.type = nucleo.Model.TYPE.SIMPLE;
+    this.normals    = undefined;
+    this.wireframe  = undefined;
+    this.bb         = [0, 0, 0, 0, 0, 0];
+    this.centre     = [0, 0, 0, 0, 0, 0];
+    this.mode       = nucleo.Actor.MODE.SOLID;
+    this.image      = undefined;
+    this.uri        = undefined;
+    this.colors     = undefined;
+    this.type       = nucleo.Model.TYPE.SIMPLE;
     this.renderable = undefined;
 
     if (JSON_OBJECT != undefined) {
@@ -9091,9 +9173,10 @@ nucleo.Model = function Model(name, JSON_OBJECT) {
 /*
  * Constants
  */
-nucleo.Model.LOADING_MODE = nucleo.define.Model.LOADING_MODE;
+nucleo.Model.LOADING_MODE    = nucleo.define.Model.LOADING_MODE;
 nucleo.Model.MAX_NUM_INDICES = nucleo.define.Model.MAX_NUM_INDICES;
-nucleo.Model.TYPE = nucleo.define.Model.TYPE;
+nucleo.Model.TYPE            = nucleo.define.Model.TYPE;
+
 /**
  * Indices to draw the bounding box. The vertices in this case will correspond
  * to the actor bounding box calculation
@@ -9187,11 +9270,11 @@ nucleo.Model.prototype.update = function () {
  */
 nucleo.Model.prototype.computeNormals = function () {
     //face normal calculation
-    var vs = this.vertices,
+    var vs  = this.vertices,
         ind = this.indices,
-        x = 0,
-        y = 1,
-        z = 2;
+        x   = 0,
+        y   = 1,
+        z   = 2;
 
     var ns = [];
     for (var i = 0; i < vs.length; i = i + 3) { //for each index, initialize normal x, normal y, normal z
@@ -9201,8 +9284,8 @@ nucleo.Model.prototype.computeNormals = function () {
     }
 
     for (var i = 0; i < ind.length; i = i + 3) { //we work on triads of vertex to calculate normals so i = i+3 (i = indices index)
-        var v1 = [];
-        var v2 = [];
+        var v1     = [];
+        var v2     = [];
         var normal = [];
         //p2 - p1
         v1[x] = vs[3 * ind[i + 2] + x] - vs[3 * ind[i + 1] + x];
@@ -9228,9 +9311,9 @@ nucleo.Model.prototype.computeNormals = function () {
     for (var i = 0; i < vs.length; i = i + 3) { //the increment here is because each vertex occurs with an offset of 3 in the array (due to x, y, z contiguous values)
 
         var nn = [];
-        nn[x] = ns[i + x];
-        nn[y] = ns[i + y];
-        nn[z] = ns[i + z];
+        nn[x]  = ns[i + x];
+        nn[y]  = ns[i + y];
+        nn[z]  = ns[i + z];
 
         var len = Math.sqrt((nn[x] * nn[x]) + (nn[y] * nn[y]) + (nn[z] * nn[z]));
         if (len == 0) len = 1.0;
@@ -9265,15 +9348,15 @@ nucleo.Model.prototype.flipNormals = function () {
 nucleo.Model.prototype.computeWireframeIndices = function () {
     var ind = this.indices;
     var wfi = [];
-    var j = 0;
+    var j   = 0;
     for (var i = 0; i < ind.length; i = i + 3) {
-        wfi[j] = ind[i];
+        wfi[j]     = ind[i];
         wfi[j + 1] = ind[i + 1];
         wfi[j + 2] = ind[i + 1];
         wfi[j + 3] = ind[i + 2];
         wfi[j + 4] = ind[i + 2];
         wfi[j + 5] = ind[i];
-        j = j + 6;
+        j          = j + 6;
     }
     this.wireframe = wfi;
 };
@@ -9287,12 +9370,12 @@ nucleo.Model.prototype.computeBoundingBox = function () {
 
     //This is the case with the scene toys
     if (this.vertices.length == 0) {
-        this.bb = [0, 0, 0, 0, 0, 0];
+        this.bb     = [0, 0, 0, 0, 0, 0];
         this.centre = [0, 0, 0, 0, 0, 0];
         return;
     }
 
-    var vs = this.vertices;
+    var vs  = this.vertices;
     var bbm = [vs[0], vs[1], vs[2], vs[0], vs[1], vs[2]];
 
     var i = vs.length;
@@ -9313,7 +9396,7 @@ nucleo.Model.prototype.computeBoundingBox = function () {
     c[2] = (bbm[5] + bbm[2]) / 2;
 
 
-    this.bb = bbm;
+    this.bb     = bbm;
     this.centre = c;
 };
 
@@ -12212,23 +12295,23 @@ nucleo.BakeEngine.prototype.render = function(scene){
  */
 nucleo.Scene = function Scene() {
 
-    this.UID               = nucleo.util.generateUID();
-    this.views             = [];
-    this._actors           = [];
-    this._groups           = [];
-    this.toys              = new nucleo.SceneToys(this);
-    this.loadingMode       = nucleo.Model.LOADING_MODE.LIVE;
-    this.normalsFlipped    = false;
-    this.lutID             = null;
-    this.timerID           = null;
-    this.scalarMIN         = Number.MAX_VALUE;
-    this.scalarMAX         = Number.MIN_VALUE;
-    this.bb                = [0, 0, 0, 0, 0, 0];
-    this.centre            = [0, 0, 0];
-    this.frameAnimation    = null;
+    this.UID            = nucleo.util.generateUID();
+    this.views          = [];
+    this._actors        = [];
+    this._groups        = [];
+    this.toys           = new nucleo.SceneToys(this);
+    this.loadingMode    = nucleo.Model.LOADING_MODE.LIVE;
+    this.normalsFlipped = false;
+    this.lutID          = null;
+    this.timerID        = null;
+    this.scalarMIN      = Number.MAX_VALUE;
+    this.scalarMAX      = Number.MIN_VALUE;
+    this.bb             = [0, 0, 0, 0, 0, 0];
+    this.centre         = [0, 0, 0];
+    this.frameAnimation = null;
 
-    var ntf                = nucleo.Notifier.instance;
-    var e                  = nucleo.EVENTS;
+    var ntf = nucleo.Notifier.instance;
+    var e   = nucleo.EVENTS;
 
     ntf.publish([e.SCENE_NEW, e.SCENE_UPDATED], this);
     ntf.subscribe([e.MODELS_LOADED, e.DEFAULT_LUT_LOADED], this);
@@ -12262,11 +12345,12 @@ nucleo.Scene.prototype.handleEvent = function (event, src) {
  * @see {Model.loadingMode}
  */
 nucleo.Scene.prototype.setLoadingMode = function (mode) {
-    var m = Model.loadingMode;
 
-    if (mode == undefined || mode == null ||
-        (mode != m.LIVE && mode != m.LATER && mode != m.DETACHED)) {
-        throw('the mode ' + mode + 'is not a valid loading mode');
+    var m = nucleo.define.Model.LOADING_MODE;
+
+    if (mode === undefined || mode === null ||
+        (mode !== m.LIVE && mode !== m.LATER && mode !== m.DETACHED)) {
+        throw ('the mode ' + mode + 'is not a valid loading mode');
     }
     this.loadingMode = mode;
 };
@@ -12334,30 +12418,8 @@ nucleo.Scene.prototype.computeBoundingBox = function () {
     }
 };
 
-/**
- * This function creates AND ADD a new actor to this scene
- * @param {Model} model the model from which a new actor will be created AND added to this scene
- *
- * If you are looking to create but not adding an actor call new Actor(model) instead.
- *
- * @returns actor the actor that was created and added to the scene, from the model passed as parameter
- */
-nucleo.Scene.prototype.createActor = function (model) {
-    var actor = new nucleo.Actor(model);
-    this.addActor(actor);
-    return actor;
-};
 
-/**
- * Creates multiples actors at once
- * @param {[ Model ]} models a list of models to create actors from
- */
-nucleo.Scene.prototype.createActors = function (models) {
-    var i = models.length;
-    while (i--) {
-        this.createActor(models[i]);
-    }
-};
+
 /**
  * Adds one actor.
  * @param actor the actor to be added to the scene
@@ -12390,7 +12452,7 @@ nucleo.Scene.prototype.updateActor = function (actor) {
     if (!this.hasActor(actor)) return;
 
     actor.dirty = true;
-    var i = this.views.length;
+    var i       = this.views.length;
     while (i--) {
         this.views[i].renderer.reallocate();
     }
@@ -12402,9 +12464,9 @@ nucleo.Scene.prototype.updateActor = function (actor) {
  * @param actor the actor to be removed from the scene
  */
 nucleo.Scene.prototype.removeActor = function (actor) {
-    var idx = this._actors.indexOf(actor);
+    var idx    = this._actors.indexOf(actor);
     var _actor = this._actors.splice(idx, 1);
-    _actor = null;
+    _actor     = null;
     this.computeBoundingBox();
 };
 
@@ -12444,7 +12506,7 @@ nucleo.Scene.prototype.setPropertyForAll = function (property, value) {
  * @param {Object} value the value of the property
 
  */
-nucleo.Scene.prototype.setPropertyFor = function (list, property, value) {
+nucleo.Scene.prototype.setPropertyFor    = function (list, property, value) {
     var i = list.length;
     while (i--) {
         if (this.hasActor(list[i])) {
@@ -12479,7 +12541,7 @@ nucleo.Scene.prototype.updateScalarRange = function () {
  */
 nucleo.Scene.prototype.setLookupTable = function (lutID) {
     this.lutID = lutID;
-    var i = this._actors.length;
+    var i      = this._actors.length;
     while (i--) {
         this._actors[i].setLookupTable(lutID, this.scalarMIN, this.scalarMAX);
     }
@@ -12494,7 +12556,7 @@ nucleo.Scene.prototype.reset = function () {
     while (i--) {
         this._actors[i] = null;
     }
-    this._actors = [];
+    this._actors   = [];
     nucleo.c.actor = null;
     this.computeBoundingBox();
 };
@@ -12504,7 +12566,7 @@ nucleo.Scene.prototype.reset = function () {
  * @param name the name of the actor to retrieve
  */
 nucleo.Scene.prototype.getActorByName = function (name) {
-    name = name.replace(/\.[^/.]+$/, "");
+    name  = name.replace(/\.[^/.]+$/, "");
     var i = this._actors.length;
     while (i--) {
         if (this._actors[i].name == name) {
@@ -12553,14 +12615,14 @@ nucleo.Scene.prototype.getActor = function (actorNameOrUID) {
  */
 nucleo.Scene.prototype.getActorsThat = function (condition) {
     var idx = [];
-    var i = this._actors.length;
+    var i   = this._actors.length;
     while (i--) {
         if (condition(this._actors[i])) {
             idx.push(i);
         }
     }
     var results = [];
-    var j = idx.length;
+    var j       = idx.length;
     while (j--) {
         results.push(this._actors[idx[j]]);
     }
@@ -12617,11 +12679,11 @@ nucleo.Scene.prototype.setVisualizationMode = function (mode) {
  * @param {FrameAnimation} animation the animation to set on this scene
  * @see FrameAnimation
  */
-nucleo.Scene.prototype.setAnimation = function (animation) {
+nucleo.Scene.prototype.setAnimation   = function (animation) {
     if (animation instanceof nucleo.FrameAnimation) {
-        this.frameAnimation = animation;
+        this.frameAnimation       = animation;
         this.frameAnimation.scene = this;
-        var i = this.views.length;
+        var i                     = this.views.length;
         while (i--) {
             this.views[i].renderer.setMode(nucleo.Renderer.MODE.ANIMFRAME);
         }
@@ -12637,7 +12699,7 @@ nucleo.Scene.prototype.setAnimation = function (animation) {
 nucleo.Scene.prototype.clearAnimation = function () {
     if (this.frameAnimation) {
         this.frameAnimation.scene = null;
-        this.frameAnimation = null;
+        this.frameAnimation       = null;
     }
 };
 
@@ -12647,7 +12709,7 @@ nucleo.Scene.prototype.clearAnimation = function () {
  */
 nucleo.Scene.prototype.getActorNames = function () {
     var list = [];
-    var i = this._actors.length;
+    var i    = this._actors.length;
     while (i--) {
         list.push(this._actors[i].name);
     }
@@ -12675,7 +12737,7 @@ nucleo.Scene.prototype.getPickableActors = function () {
  */
 nucleo.Scene.prototype.getActorByCellUID = function (UID) {
     var list = [];
-    var i = this._actors.length;
+    var i    = this._actors.length;
     while (i--) {
         var actor = this._actors[i];
         if (actor.mesh != undefined && actor.mesh.hasCell(UID)) {
@@ -13569,7 +13631,7 @@ nucleo.View.prototype.load = function (arguments, path, mode) {
         throw Exception("not a valid argument");
     }
 
-    if (mode != undefined && mode != null) {
+    if (mode !== undefined && mode !== null) {
         this.scene.setLoadingMode(mode);
     }
 
@@ -13580,289 +13642,568 @@ nucleo.View.prototype.load = function (arguments, path, mode) {
 
 
 /*-------------------------------------------------------------------------
-    This file is part of Nucleo.js
+ This file is part of Nucleo.js
 
-    Nucleo is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation version 3.
+ Nucleo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 3.
 
-    Nucleo is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ Nucleo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with Nucleo.  If not, see <http://www.gnu.org/licenses/>.
----------------------------------------------------------------------------*/   
+ You should have received a copy of the GNU General Public License
+ along with Nucleo.  If not, see <http://www.gnu.org/licenses/>.
+ ---------------------------------------------------------------------------*/
+
+/**
+ * Reads a VTK file and creates the respective JSON(s) file(s).
+ * @class Reads VTK files (ASCII)  and creates JSON objects that can be used as models
+ * @constructor
+ */
+nucleo.VTKReader = function VTKReader(scene) {
+    this.scene = scene; //the scene that will be updated
+    nucleo.Notifier.instance.publish(nucleo.EVENTS.READER_DONE, this);
+};
+
+/**
+ * Verifies if the HTML5 API is available.
+ */
+nucleo.VTKReader.prototype.isSupported = function () {
+    return (window.File && window.FileReader && window.FileList && window.Blob);
+};
+
+
+/**
+ * @param {File} file an HTML5 File object
+ */
+nucleo.VTKReader.prototype.readFile = function (file) {
+    var vtkReader = this;
+    var filename  = file.name;
+
+    if (filename.length - 4 !== filename.indexOf('.vtk')) {
+        throw 'VTKReader.read: the file ' + file + ' is not a VTK file';
+    }
+
+    modelname   = filename.replace(/\.[^/.]+$/, "");
+    var freader = new FileReader();
+
+    freader.onload = function (event) {
+        document.body.style.cursor = 'default';
+        var contents               = event.target.result.trim();
+        var lines                  = contents.split(/\r\n|\r|\n/);
+        vtkReader._parse(modelname, lines);
+        nucleo.Notifier.instance.fire(nucleo.EVENTS.READER_DONE, vtkReader);
+    };
+
+    document.body.style.cursor = 'wait';
+    freader.readAsText(file);
+};
+
+
+/**
+ * If the VTK file exists in memory as a String (text) then we can
+ * use this method to parse it.
+ *
+ * @param {String} name the name of the object
+ * @param {String} text the retrieved object contents
+ */
+nucleo.VTKReader.prototype.readText = function (name, text) {
+    document.body.style.cursor = 'wait';
+    var lines                  = text.split(/\r\n|\r|\n/);
+    this._parse(name, lines);
+    nucleo.Notifier.instance.fire(nucleo.EVENTS.READER_DONE, this);
+    document.body.style.cursor = 'default';
+};
+
+/**
+ * Reads the file line by line and populates the respective arrays
+ */
+nucleo.VTKReader.prototype._parse = function (name, lines) {
+
+    var ARRAY_SIZE = 65536 * 3;
+    var outputfile = '';
+    var numBlocks  = 0;
+    var location   = 'NOWHERE';
+    var linenumber = 0;
+
+
+    var vertices = [];
+    var indices  = [];
+    var normals  = [];
+    var scalars  = [];
+    var colors   = [];
+    var mode     = "SOLID";
+
+    var tags = {
+        NOWHERE            : 0,
+        POINTS             : 1,
+        LINES              : 2,
+        POLYGONS           : 3,
+        POINT_DATA         : 4,
+        NORMALS            : 5,
+        CELL_DATA          : 6,
+        TEXTURE_COORDINATES: 7,
+        SCALARS            : 8,
+        LOOKUP_TABLE       : 9,
+        COLOR_SCALARS      : 10
+    };
+
+    this.json = {name: name};
+
+
+    function createLineIndices(line) {
+        var count = line.length - 1;
+        if (count != line[0]) {
+            throw 'Assertion Error. Inconsistent line';
+        }
+        var values = line.splice(1, count);
+        for (var i = 0; i < count - 1; i += 1) {
+            indices.push(parseInt(values[i]));
+            indices.push(parseInt(values[i + 1]));
+        }
+    }
+
+    for (var linenumber = 0; linenumber < lines.length; linenumber++) {
+
+        try {
+            if (lines[linenumber].indexOf('POINTS') == 0) {
+                console.log(lines[linenumber]);
+                location = tags.POINTS;
+                continue;
+            }
+            else if (lines[linenumber].indexOf('LINES') == 0) {
+                console.log(lines[linenumber]);
+                location = tags.LINES;
+                mode     = "LINES";
+                continue;
+            }
+            else if (lines[linenumber].indexOf('TRIANGLE_STRIPS') == 0) {
+                console.log(lines[linenumber]);
+                alert('vxlVTKParser ERROR: \n' + 'Triangle Strips Not Supported. Please triangulate first');
+                throw('Triangle Strips Not Supported. Please triangulate first');
+            }
+            else if (lines[linenumber].indexOf('POLYGONS') == 0) {
+                console.log(lines[linenumber]);
+                location = tags.POLYGONS;
+                continue;
+            }
+            else if (lines[linenumber].indexOf('POINT_DATA') == 0) {
+                location = tags.POINT_DATA;
+                continue;
+            }
+            else if (lines[linenumber].indexOf('NORMALS') == 0) {
+                console.log(lines[linenumber]);
+                location = tags.NORMALS;
+                continue;
+            }
+            else if (lines[linenumber].indexOf('CELL_DATA') == 0) {
+                console.log(lines[linenumber]);
+                location = tags.CELL_DATA;
+                continue;
+            }
+            else if (lines[linenumber].indexOf('TEXTURE_COORDINATES') == 0) {
+                console.log(lines[linenumber]);
+                location = tags.TEXTURE_COORDINATES;
+                continue;
+            }
+            else if (lines[linenumber].indexOf('SCALARS') == 0) {
+                console.log(lines[linenumber]);
+                location = tags.SCALARS;
+                continue;
+            }
+            else if (lines[linenumber].indexOf('LOOKUP_TABLE') == 0) {
+                console.log(lines[linenumber]);
+                location = tags.LOOKUP_TABLE;
+                continue;
+            }
+            else if (lines[linenumber].indexOf('COLOR_SCALARS') == 0) {
+                console.log(lines[linenumber]);
+                location = tags.COLOR_SCALARS;
+                continue;
+            }
+
+            // -------------------
+            else if (location == tags.POINTS) {
+                var v = lines[linenumber].trim().split(' ');
+                if (v == "") continue;
+                for (var i = 0; i < v.length; i++) {
+                    vertices.push(parseFloat(v[i]));
+                }
+            }
+            else if (location == tags.LINES) {
+                var elements = lines[linenumber].trim().split(' ');
+                if (elements == "") continue;
+                createLineIndices(elements);
+            }
+            else if (location == tags.POLYGONS) //they have to be triangles
+            {
+                var tt = lines[linenumber].trim().split(' ');
+                if (tt == "") continue;
+                if (tt.length > 0 && tt[0] != '3') {
+                    throw "Error: please make sure your vtk file contains triangles instead of polygons (triangulate first)";
+                }
+                for (var i = 1; i < tt.length; i++) {
+                    indices.push(parseInt(tt[i]));
+                }
+            }
+            else if (location == tags.LOOKUP_TABLE) {
+                if (lines[linenumber].indexOf('LOOKUP_TABLE') == 0)
+                    continue;
+                else {
+                    var pd = lines[linenumber].trim().split(' ');
+                    if (pd == "") continue;
+                    for (var i = 0; i < pd.length; i++) {
+                        scalars.push(parseFloat(pd[i]));
+                    }
+                }
+            }
+            else if (location == tags.COLOR_SCALARS) {
+                var n = lines[linenumber].trim().split(' ');
+                if (n == "") continue;
+                for (var i = 0; i < n.length; i++) {
+                    colors.push(parseFloat(n[i]));
+                }
+            }
+            else if (location == tags.NORMALS) {
+                var n = lines[linenumber].trim().split(' ');
+                if (n == "") continue;
+                for (var i = 0; i < n.length; i++) {
+                    normals.push(parseFloat(n[i]));
+                }
+            }
+        }
+        catch (err) {
+            console.log('Error while processing line ' + linenumber.toString());
+            throw err;
+        }
+    }
+
+
+    this.json.vertices = vertices;
+    this.json.mode     = mode;
+    if (indices.length > 0)   this.json.indices = indices;
+    if (normals.length > 0)   this.json.normals = normals;
+    if (colors.length > 0)   this.json.colors = colors;
+    if (scalars.length > 0)   this.json.scalars = scalars;
+
+};
+
+
+nucleo.VTKReader.prototype.getModel = function () {
+    var model = new Model(this.json.name, this.json);
+    this.json = null;
+    delete this.json;
+    return model;
+};
+
+/*-------------------------------------------------------------------------
+ This file is part of Nucleo.js
+
+ Nucleo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 3.
+
+ Nucleo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Nucleo.  If not, see <http://www.gnu.org/licenses/>.
+ ---------------------------------------------------------------------------*/
 /**
  * Creates Model objects and assigns them to a Scene.
- * 
+ *
  * ModelManager provides methods for loading remote and local models.
- * 
- * 
+ *
+ *
  * @class Controls the loading and network transfer of models into memory
  * @constructor
  * @author Diego Cantor
  */
-nucleo.ModelManager = function ModelManager(){
-	this.toLoad = []; 
-	this.models = [];
-	
-	var e = nucleo.EVENTS;
+nucleo.ModelManager = function ModelManager() {
+    this.toLoad  = [];
+    this.models  = [];
+    this.readers = {};
+
+    var e = nucleo.EVENTS;
 
     nucleo.Notifier.instance.publish([
-	       e.MODELS_LOADING,
-	       e.MODEL_NEW,
-	       e.MODELS_LOADED
-	    ],this);
+        e.MODELS_LOADING,
+        e.MODEL_NEW,
+        e.MODELS_LOADED
+    ], this);
 
     nucleo.Notifier.instance.subscribe(e.READER_DONE, this);
+
+    this.registerReader('vtk', nucleo.VTKReader);
 };
 
 /**
  * Handles Nucleo events to which this model manager is subscribed to
- * @param {String} event the event that was fired 
- * @param {Object} source the object that fired the event 
+ * @param {String} p_event the p_event that was fired
+ * @param {Object} p_source the object that fired the p_event
  */
-nucleo.ModelManager.prototype.handleEvent = function(event,source){
-    var reader = source;
-    var model = reader.getModel();
+nucleo.ModelManager.prototype.handleEvent = function (p_event, p_source) {
+    var reader = p_source;
+    var model  = reader.getModel();
     this.add(model, reader.scene);
 };
 
 
-/**
- * Uses a JSON/Ajax mechanism to load models from a Web Server.
- * @param {String} uri The path to the file that will be loaded. 
- * @param {Scene} scene The scene that will create an actor for this model. This parameter is optional.
- */  
-nucleo.ModelManager.prototype.load = function(uri, scene) {
-    var manager = this;
-    
-    var filename = uri.replace(/^.*[\\\/]/, '');
-    var modelname = filename.split('.')[0];
-    var extension = filename.split('.')[1];
-	
-	var dtype = 'json';
-	var mime = 'application/json';
-	
-	if (manager.isModelLoaded(modelname)) return;
-	
-	
-	if (extension == 'vtk'){
-	    dtype ='text';
-	    mime = 'text/plain';
-	}
-	else if (extension == 'json'){
-	    dtype = 'json';
-	}
-	else{
-	    alert ('vxlManager.load ERROR: Unknown filetype ['+extension+']');
-	    throw ('vxlManager.load ERROR: Unknown filetype ['+extension+']');
-	}
-	   
-	nocacheuri = uri +'?nocache=' + (new Date()).getTime();
-	
-	
-	nucleo.util.console('ModelManager.load: Requesting '+uri+'...');
-	nucleo.Notifier.instance.fire(nucleo.EVENTS.MODELS_LOADING, this);
-	
-	var successHandler = function(manager,modelname,scene){
-	    switch(extension){
-	    case 'json':
-    		return function(json, textStatus){
-    		    json.uri = filename;
-    		    json.path = nucleo.util.getPath(uri);
-    		    json.name = modelname;
-    			manager.add(json,scene);
-    		};
-    		break;
-    	case 'vtk':
-		    return function(data){
-		        var reader = new VTKReader(scene);
-		        reader.readText(modelname, data);
-		    };
-		 }
-	};
-	
-	var errorHandler = function(uri){
-		return function(request, status, error){
-			
-			if(error.code = 1012){
-				alert('The file '+uri+' could not be accessed. \n\n'+
-    			'Please make sure that the path is correct and that you have the right pemissions');
-			}
-			else{
-				alert ('There was a problem loading the file '+uri+'. HTTP error code:'+request.status);
-			}		
-		};
-	};
-	
-	var request  = $.ajax({
-		url			: nocacheuri,
-		type		:"GET",
-		dataType	: dtype,
-		mimeType    : mime,
-		success 	: successHandler(manager,modelname,scene),
-		error		: errorHandler(uri)
-	});    
-};
+nucleo.ModelManager.prototype.registerReader = function (p_extension, p_reader) {
+    this.readers[p_extension] = new p_reader();
+}
+
 
 /**
- * Loads a list of models and assigns them to a scene
- * @param {Array} list list of files to load 
- * @param {Scene} scene scene to callback when the models are loaded
+ * Uses an Ajax mechanism to load models from a Web Server.
+ * @param {String} p_uri The path to the file that will be loaded.
+ * @param {Scene} p_scene The p_scene that will create an actor for this model. This parameter is optional.
  */
-nucleo.ModelManager.prototype.loadList = function(list,scene){
-	this.toLoad = list.slice(0); 
-	nucleo.util.console('ModelManager.loadList: models to load ->' + this.toLoad.length);
-   	for(var i=0;i<this.toLoad.length; i++){
-		this.load(this.toLoad[i],scene);
-   	}
+nucleo.ModelManager.prototype.load = function (p_uri, p_scene) {
+
+    var successHandler, errorHandler, dtype, mime, nocacheuri, manager = this,
+        file_name                                                      = p_uri.replace(/^.*[\\\/]/, ''),
+        model_name                                                     = file_name.split('.')[0],
+        extension                                                      = file_name.split('.')[1];
+
+    if (manager.isModelLoaded(model_name)) {
+        return;
+    }
+
+    if (extension === 'vtk') {
+        dtype = 'text';
+        mime  = 'text/plain';
+    }
+    else if (extension === 'json') {
+        dtype = 'json';
+        mime  = 'application/json';
+    }
+    else {
+        throw ('ModelManager.load ERROR: Unknown filetype [' + extension + ']');
+    }
+
+    nocacheuri = encodeURI(p_uri + '?nocache=' + (new Date()).getTime());
+
+    nucleo.util.console('ModelManager.load: Requesting ' + p_uri + '...');
+
+    nucleo.Notifier.instance.fire(nucleo.EVENTS.MODELS_LOADING, this);
+
+
+    successHandler = function (manager, model_name, scene) { //polymorphism
+        switch (extension) {
+            case 'json':
+                return function (json) { //this is the function invoked as callback, with access to context variables
+                    json.uri  = file_name;
+                    json.path = nucleo.util.getPath(p_uri);
+                    json.name = model_name;
+                    manager._createActorInScene(json, scene);
+                };
+                break;
+
+            case 'vtk':
+                return function (data) { //this is the function invoked as callback, with access to context variables
+                    var reader = new nucleo.VTKReader(scene);
+                    reader.readText(model_name, data);
+                };
+        }
+    };
+
+    errorHandler = function (uri) {
+        return function (request, status, error) { //this is the function invoked on error
+
+            if (status = 1012) {
+                alert('The file ' + uri + ' could not be accessed. \n\n' +
+                'Please make sure that the path is correct and that you have the right pemissions');
+            }
+            else {
+                alert('There was a problem loading the file ' + uri + '. HTTP error code:' + status + ' ' + error);
+            }
+        };
+    };
+
+    nucleo.ajax(
+        {
+            url     : nocacheuri,
+            type    : "GET",
+            dataType: dtype,
+            mimeType: mime,
+            success : successHandler(manager, model_name, p_scene),
+            error   : errorHandler(p_uri)
+        }
+    );
+};
+
+
+/**
+ * Loads a p_list of models and assigns them to a p_scene
+ * @param {Array} p_list p_list of files to load
+ * @param {Scene} p_scene p_scene to callback when the models are loaded
+ */
+nucleo.ModelManager.prototype.loadList = function (p_list, p_scene) {
+
+    this.toLoad = p_list.slice(0);
+
+    nucleo.util.console('ModelManager.loadList: models to load ->' + this.toLoad.length);
+
+    for (var i = 0; i < this.toLoad.length; i++) {
+        this.load(this.toLoad[i], p_scene);
+    }
 };
 
 /**
- * 
+ * Add JSON objects OR models to a scene, creating the corresponding actors. This method is invoked
+ * after models are received from the server.
+ *
  * @param {Object} p_object the JSON object that contains the definition of the model or
  * an instance of Model. The object must have a 'name' property.
+ *
  * @param {Scene} p_scene the scene to be called back when the model is created
  */
-nucleo.ModelManager.prototype.add = function(p_object,p_scene){
-	
-	var self = this, model;
+nucleo.ModelManager.prototype._createActorInScene = function (p_object, p_scene) {
 
-	
-	if (p_object instanceof nucleo.Model){
-	    model = p_object;
-	}
-	else{
-	    model = new nucleo.Model(p_object.name, p_object);
-	}
-	
-	function scheduled_add(){
-		
-    	model.loaded = true;
-    	self.models.push(model);
-    	self.toLoad.splice(name,1); //removes it from the pending list if exists
-    	
-    	nucleo.util.console('ModelManager: model '+model.name+' created.');
-    	
-    	if (p_scene != undefined && p_scene instanceof nucleo.Scene){
-    		nucleo.util.console('ModelManager: notifying the scene...');
-    		if (p_scene.loadingMode == nucleo.Model.LOADING_MODE.LIVE){
-    			p_scene.createActor(model);
-    		}
-    		else if (p_scene.loadingMode == nucleo.Model.LOADING_MODE.LATER){
-    			if(self.allLoaded()){
-    				p_scene.createActors(self.models);
-    			}
-    		}
-    		else if (p_scene.loadingMode == nucleo.Model.LOADING_MODE.DETACHED){
-    			//do nothing
-    		}
-    	}
-        
-    	if(self.allLoaded()){ 
-    		nucleo.Notifier.instance.fire(nucleo.EVENTS.MODELS_LOADED, self);
-    	}
-    	else{
-    	    nucleo.Notifier.instance.fire(nucleo.EVENTS.MODEL_NEW, self);
-    	}
-	};
-	
-	setTimeout(function(){scheduled_add();},0);
- };
- 
+    var self = this, model;
+
+    if (p_object instanceof nucleo.Model) {
+        model = p_object;
+    }
+    else {
+        model = new nucleo.Model(p_object.name, p_object);
+    }
+
+    function scheduled_add() {
+
+        model.loaded = true;
+        self.models.push(model);
+        self.toLoad.splice(name, 1); //removes it from the pending list if exists
+
+        nucleo.util.console('ModelManager: model ' + model.name + ' created.');
+
+        if (p_scene != undefined && p_scene instanceof nucleo.Scene) {
+
+            nucleo.util.console('ModelManager: notifying the scene...');
+
+            if (p_scene.loadingMode == nucleo.Model.LOADING_MODE.LIVE) {
+                var actor = new nucleo.Actor(model);
+                p_scene.addActor(actor);
+            }
+
+            else if (p_scene.loadingMode == nucleo.Model.LOADING_MODE.LATER) {
+                if (self.allLoaded()) {
+                    var i = models.length;
+                    while (i--) {
+                        this.createActor(models[i]);
+                    }
+                }
+            }
+        }
+
+        else if (p_scene.loadingMode == nucleo.Model.LOADING_MODE.DETACHED) {
+            //do nothing
+        }
+    }
+
+    if (self.allLoaded()) {
+        nucleo.Notifier.instance.fire(nucleo.EVENTS.MODELS_LOADED, self);
+    }
+    else {
+        nucleo.Notifier.instance.fire(nucleo.EVENTS.MODEL_NEW, self);
+    }
+
+    setTimeout(function () { scheduled_add(); }, 0);
+};
+
 /**
  * It will delete all of the loaded models
- */  
-nucleo.ModelManager.prototype.reset = function(){
-	this.firstLoadedModel = false;
-	for (var i=0; i <this.models.length; i++){
-		this.models[i] = null;
-	}
-	
-	this.models        = [];
-	this.toLoad        = [];
+ */
+nucleo.ModelManager.prototype.reset = function () {
+    this.firstLoadedModel = false;
+    for (var i = 0; i < this.models.length; i++) {
+        this.models[i] = null;
+    }
+
+    this.models = [];
+    this.toLoad = [];
 };
 
 /**
  * Checks if a model has been loaded yet
- * @param {String} name the name of the model to check
+ * @param {String} p_name the p_name of the model to check
  */
-nucleo.ModelManager.prototype.isModelLoaded = function(name){
-	for(var i=0;i<this.models.length;i++){
-		if (this.models[i].name == name) return true;
-	}
-	return false;
+nucleo.ModelManager.prototype.isModelLoaded = function (p_name) {
+    for (var i = 0; i < this.models.length; i++) {
+        if (this.models[i].name == p_name) return true;
+    }
+    return false;
 };
 
 /**
  * Returns true if all the models in the list passed to the method loadList have been loaded.
  */
-nucleo.ModelManager.prototype.allLoaded = function(){
-	return (this.toLoad.length == 0);
+nucleo.ModelManager.prototype.allLoaded = function () {
+    return (this.toLoad.length == 0);
 };
 
 
 /**
  * Returns the model if it has been loaded by this model manager, null otherwise.
- * @param {String} name the name of the model to retrieve
+ * @param {String} p_name the p_name of the model to retrieve
  */
-nucleo.ModelManager.prototype.getModelByName = function(name){
- 	for(var i=0, max = this.models.length; i<max; i+=1){
-		if (this.models[i].name == name) return this.models[i];
-	}
-	return null;
+nucleo.ModelManager.prototype.getModelByName = function (p_name) {
+    for (var i = 0, max = this.models.length; i < max; i += 1) {
+        if (this.models[i].name == p_name) return this.models[i];
+    }
+    return null;
 };
 
 /**
- * Defines the global Model Manager 
+ * Defines the global Model Manager
  */
 nucleo.ModelManager.instance = new nucleo.ModelManager();/*-------------------------------------------------------------------------
-    This file is part of Nucleo.js
+ This file is part of Nucleo.js
 
-    Nucleo is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation version 3.
+ Nucleo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 3.
 
-    Nucleo is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ Nucleo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with Nucleo.js.  If not, see <http://www.gnu.org/licenses/>.
----------------------------------------------------------------------------*/  
+ You should have received a copy of the GNU General Public License
+ along with Nucleo.js.  If not, see <http://www.gnu.org/licenses/>.
+ ---------------------------------------------------------------------------*/
 /*
-* Idea: to use a lightweight pattern. A pool of vxlModels that are reused.
-* Every frame the information is copied to the buffers, instead of saving as many gl vbos as models
-*/
+ * Idea: to use a lightweight pattern. A pool of vxlModels that are reused.
+ * Every frame the information is copied to the buffers, instead of saving as many gl vbos as models
+ */
 /**
  * Provides frame-to-frame animation
- * 
+ *
  * @class Manages a frame-to-frame animation
  * @constructor
  * @param map  JSON object where each property name is one frame and each property value
- * is a list of actors 
+ * is a list of actors
  * var map = {"frame1":["actor1","actor2"], "frame2":["actor3","actor4"]}
- * 
+ *
  */
-var nucleo = nucleo || {};
+nucleo.FrameAnimation = function FrameAnimation(map) {
+    this.scene = null;
 
-nucleo.FrameAnimation = function FrameAnimation(map){
-	this.scene             = null;
+    this.actorByFrameMap = [];
+    this.activeFrame     = 1;
+    this.mark            = 1;
+    this._running        = false;
+    this.frameCount      = 0;
+    this.renderRate      = 500;
 
-	this.actorByFrameMap   = [];
-	this.activeFrame       = 1;
-	this.mark              = 1;
-	this._running          = false;
-    this.frameCount        = 0;
-    this.renderRate        = 500;
-    
-    this._startDate        = undefined;
-    this._time             = 0;
-    
+    this._startDate = undefined;
+    this._time      = 0;
+
     this._setup(map);
 
 };
@@ -13872,51 +14213,51 @@ nucleo.FrameAnimation = function FrameAnimation(map){
  * @param {Number} frame the frame
  * @param {String} actorName the name of the actor. It must exist.
  */
-nucleo.FrameAnimation.prototype.addActorToFrame = function(frame,actorName){
-	if (typeof(this.actorByFrameMap[frame])=='undefined'){
-		this.actorByFrameMap[frame] = new Array();
-	}
-	if (this.actorByFrameMap[frame].indexOf(actorName) == -1){
-		this.actorByFrameMap[frame].push(actorName);
-	}
-    if (frame>this.frameCount) this.frameCount = frame;
+nucleo.FrameAnimation.prototype.addActorToFrame = function (frame, actorName) {
+    if (typeof(this.actorByFrameMap[frame]) == 'undefined') {
+        this.actorByFrameMap[frame] = new Array();
+    }
+    if (this.actorByFrameMap[frame].indexOf(actorName) == -1) {
+        this.actorByFrameMap[frame].push(actorName);
+    }
+    if (frame > this.frameCount) this.frameCount = frame;
 };
 
 /**
  * Map is a JSON object where each property name is one frame and each property value
- * is a list of actors 
- * 
+ * is a list of actors
+ *
  * var map = {"frame1":["actor1","actor2"], "frame2":["actor3","actor4"]}
  * @private
  */
-nucleo.FrameAnimation.prototype._setup = function(map){
-	this.activeFrame = 1;
+nucleo.FrameAnimation.prototype._setup = function (map) {
+    this.activeFrame = 1;
 
-	for (var f in map){
-		var actorList = map[f];
-		var frame = parseInt(f.substr(5,f.length));
-		for(var i=0, max = actorList.length; i < max; i+=1){
-			this.addActorToFrame(frame,actorList[i]);
-		}
-	}
-	nucleo.util.console('FrameAnimation: Setup finished.');
+    for (var f in map) {
+        var actorList = map[f];
+        var frame     = parseInt(f.substr(5, f.length));
+        for (var i = 0, max = actorList.length; i < max; i += 1) {
+            this.addActorToFrame(frame, actorList[i]);
+        }
+    }
+    nucleo.util.console('FrameAnimation: Setup finished.');
 };
 
 /**
  * Starts the animation loop
  * @param {Number} rate the framerate for the animation (optional)
  */
-nucleo.FrameAnimation.prototype.start = function (){
-	if (this.scene == null) throw 'FrameAnimation: the animation is not associated with any scene. Please use scene.setFrameAnimation method';
+nucleo.FrameAnimation.prototype.start = function (rate) {
+    if (this.scene == null) throw 'FrameAnimation: the animation is not associated with any scene. Please use scene.setFrameAnimation method';
 
     this._startDate = new Date().getTime();
-    this._time  = 0;
-    this._running = true;
-    
-    if (rate != undefined && rate >=0){
-    	this.renderRate = rate;
+    this._time      = 0;
+    this._running   = true;
+
+    if (rate != undefined && rate >= 0) {
+        this.renderRate = rate;
     }
-    
+
     this._timeUp();
 };
 
@@ -13924,422 +14265,151 @@ nucleo.FrameAnimation.prototype.start = function (){
 /**
  * Implements a self-adjusting timer
  * @see http://www.sitepoint.com/creating-accurate-timers-in-javascript/
- * @private 
+ * @private
  */
-nucleo.FrameAnimation.prototype._timeUp = function(){
+nucleo.FrameAnimation.prototype._timeUp = function () {
     if (!this._running) return;
-    
+
     this.nextFrame();
-    
-    if (this._time == this.renderRate * 100){  //for long running animations
-        this._time = 0;
+
+    if (this._time == this.renderRate * 100) {  //for long running animations
+        this._time      = 0;
         this._startDate = new Date().getTime();
     }
-    
+
     this._time += this.renderRate;
 
     var diff = (new Date().getTime() - this._startDate) - this._time;
-    
+
     if (diff > this.renderRate) diff = 0; //ignore it
-    
-    setTimeout((function(self){
-        return function(){
+
+    setTimeout((function (self) {
+        return function () {
             self._timeUp();
         };
     })(this), this.renderRate - diff);
-    
+
 };
 
 /**
  * Stops the animation loop
  */
-nucleo.FrameAnimation.prototype.stop = function(){
+nucleo.FrameAnimation.prototype.stop = function () {
     this._running = false;
 };
 
-nucleo.FrameAnimation.prototype.setFrameRate = function(rate){
-	if (rate <=0) return;
-	this.stop();
-	this.renderRate = rate;
-	this.start();
+/**
+ * Sets the frame rate
+ * @param rate
+ */
+nucleo.FrameAnimation.prototype.setFrameRate = function (rate) {
+    if (rate <= 0) return;
+    this.stop();
+    this.renderRate = rate;
+    this.start();
 };
 
 
 /**
  * Selects the actors that will be visible in the current frame
  */
-nucleo.FrameAnimation.prototype.update = function(){
-	
-	if (this.scene == null) throw 'FrameAnimation: the animation is not associated with any scene. Please use scene.setFrameAnimation method';
-	
-	
-	//we hide them all first
-	this.scene.setPropertyForAll('visible', false);  
-	 
-	//then we decide which ones are visible
-	var currentActors = this.actorByFrameMap[this.activeFrame]
-	var NUM = currentActors.length;
-	for (var i=0; i<NUM; i++){
-		var actor = this.scene.getActorByName(currentActors[i]);
-		if (actor != null){
-			actor.setVisible(true);
-		}
-	}
+nucleo.FrameAnimation.prototype.update = function () {
+
+    if (this.scene == null) throw 'FrameAnimation: the animation is not associated with any scene. Please use scene.setFrameAnimation method';
+
+
+    //hide previous actors
+    var previousActors = this.getPreviousFrames(1);
+    var NUM            = previousActors.length;
+    for (var i = 0; i < NUM; i++) {
+        var actor = this.scene.getActorByName(previousActors[i]);
+        if (actor != null) {
+            actor.setVisible(false);
+        }
+    }
+
+    //then we decide which ones are visible
+    var currentActors = this.actorByFrameMap[this.activeFrame];
+    NUM               = currentActors.length;
+    for (i = 0; i < NUM; i++) {
+        actor = this.scene.getActorByName(currentActors[i]);
+        if (actor != null) {
+            actor.setVisible(true);
+        }
+    }
 };
 
 /**
  * Verifies if the frame number passed as parameter is in the range of the current animation
- * @param f a frame number
+ * @param frame_number {Number} a frame number
  * @returns true if the number passed as parameter is a valid frame number, false otherwise
  */
-nucleo.FrameAnimation.prototype.isValidFrame = function(f){
- return (f>=1 && f<= this.frameCount);
+nucleo.FrameAnimation.prototype.isValidFrame = function (frame_number) {
+    return (frame_number >= 1 && frame_number <= this.frameCount);
 };
 
 /**
  * Moves the animation to the next valid frame. If the activeFrame is the last frame in the animation, then
  * the animation is reset to the first frame.
  */
-nucleo.FrameAnimation.prototype.nextFrame = function(){
-	if (this.activeFrame < this.frameCount){
-		this.activeFrame++;
-	}
-	else{
-		this.activeFrame = 1;
-	}
+nucleo.FrameAnimation.prototype.nextFrame = function () {
+    if (this.activeFrame < this.frameCount) {
+        this.activeFrame++;
+    }
+    else {
+        this.activeFrame = 1;
+    }
 };
 
 /**
- * Gets the next n valid frames. Works as a circular buffer.
+ * Gets the next n_frames valid frames. Works as a circular buffer.
  */
-nucleo.FrameAnimation.prototype.getNextFrames = function(n){
-	var list = [];
-	var c = this.activeFrame;
-	if (n> this.frameCount) n = this.frameCount;
-	for (var i=1; i <=n; i++){
-		var next = c + i;
-		if (this.isValidFrame(next)){
-			list.push(next);
-		}
-		else{
-			list.push(next-this.frameCount);
-		}
-	}
-	nucleo.util.console('Animation: next frames: ' + list);
-	return list;
+nucleo.FrameAnimation.prototype.getNextFrames = function (n_frames) {
+    var list = [];
+    var c    = this.activeFrame;
+    if (n_frames > this.frameCount) n_frames = this.frameCount;
+    for (var i = 1; i <= n_frames; i++) {
+        var next = c + i;
+        if (this.isValidFrame(next)) {
+            list.push(next);
+        }
+        else {
+            list.push(next - this.frameCount);
+        }
+    }
+    nucleo.util.console('Animation: next frames: ' + list);
+    return list;
 };
 
 /**
  * Gets the previous n frames. Works as a circular buffer.
  */
-nucleo.FrameAnimation.prototype.getPreviousFrames = function(n){
-	var list = [];
-	var c = this.activeFrame;
-	if (n> this.frameCount) n = this.frameCount;
-	for (var i=1; i <=n; i++){
-		var previous = c - i;
-		if (this.isValidFrame(previous)){
-			list.push(previous);
-		}
-		else{
-			list.push(this.frameCount+previous);
-		}
-	}
-	nucleo.util.console('Animation: previous frames: ' + list);
-	return list;
+nucleo.FrameAnimation.prototype.getPreviousFrames = function (n_frames) {
+    var list = [];
+    var c    = this.activeFrame;
+    if (n_frames > this.frameCount) n_frames = this.frameCount;
+    for (var i = 1; i <= n_frames; i++) {
+        var previous = c - i;
+        if (this.isValidFrame(previous)) {
+            list.push(previous);
+        }
+        else {
+            list.push(this.frameCount + previous);
+        }
+    }
+    nucleo.util.console('Animation: previous frames: ' + list);
+    return list;
 };
 
 /**
  * Sets f as the active frame
- * @param f the frame to set as active
+ * @param frame_number the frame to set as active
  */
-nucleo.FrameAnimation.prototype.setFrame = function (f){
-	if (f>=1 && f <= this.frameCount){
-		this.activeFrame = f;
-		this.render();
-	}
-};
-
-/*-------------------------------------------------------------------------
-    This file is part of Nucleo.js
-
-    Nucleo is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation version 3.
-
-    Nucleo is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with Nucleo.  If not, see <http://www.gnu.org/licenses/>.
----------------------------------------------------------------------------*/ 
-
-/**
- * Reads a VTK file and creates the respective JSON(s) file(s).
- * @class Reads VTK files (ASCII)  and creates JSON objects that can be used as models
- * @constructor 
- */
-nucleo.VTKReader = function VTKReader(scene){
-    this.scene      = scene; //the scene that will be updated
-    nucleo.Notifier.instance.publish(nucleo.EVENTS.READER_DONE, this);
-};
-
-/**
- * Verifies if the HTML5 API is available. 
- */
-nucleo.VTKReader.prototype.isSupported = function(){
-    return (window.File && window.FileReader && window.FileList && window.Blob);
-};
-
-
-/**
- * @param {File} file an HTML5 File object
- */
-nucleo.VTKReader.prototype.readFile = function(file){
-    var vtkReader = this;
-    var filename = file.name;
-    
-    if (filename.length - 4 !== filename.indexOf('.vtk')){
-        throw 'VTKReader.read: the file '+file+' is not a VTK file';
+nucleo.FrameAnimation.prototype.setFrame = function (frame_number) {
+    if (frame_number >= 1 && frame_number <= this.frameCount) {
+        this.activeFrame = frame_number;
+        this.render();
     }
-    
-    modelname = filename.replace(/\.[^/.]+$/, "");
-    var freader = new FileReader();
-     
-    freader.onload = function(event){
-        document.body.style.cursor = 'default';
-        var contents = event.target.result.trim();
-        var lines = contents.split(/\r\n|\r|\n/);
-        vtkReader._parse(modelname,lines);  
-        nucleo.Notifier.instance.fire(nucleo.EVENTS.READER_DONE, vtkReader);
-    };
-    
-    document.body.style.cursor = 'wait';
-    freader.readAsText(file);
-};
-
-
-/**
- * If the VTK file exists in memory as a String (text) then we can
- * use this method to parse it. 
- * 
- * @param {String} name the name of the object
- * @param {String} text the retrieved object contents
- */
-nucleo.VTKReader.prototype.readText = function(name, text){
-    document.body.style.cursor = 'wait'; 
-    var lines = text.split(/\r\n|\r|\n/);
-    this._parse(name,lines);  
-    nucleo.Notifier.instance.fire(nucleo.EVENTS.READER_DONE, this);
-    document.body.style.cursor = 'default';
-};
-
-/**
- * Reads the file line by line and populates the respective arrays
- */
-nucleo.VTKReader.prototype._parse = function(name,lines){
-    
-   var ARRAY_SIZE = 65536*3;
-   var outputfile = '';
-   var numBlocks = 0;
-   var location = 'NOWHERE';
-   var linenumber = 0;
-   
-   
-   var vertices   = [];
-   var indices    = [];
-   var normals    = [];
-   var scalars    = [];
-   var colors     = [];
-   var mode = "SOLID";
-   
-   var tags = {
-        NOWHERE             : 0,    
-        POINTS              : 1,
-        LINES               : 2,
-        POLYGONS            : 3,
-        POINT_DATA          : 4,
-        NORMALS             : 5,
-        CELL_DATA           : 6,
-        TEXTURE_COORDINATES : 7,
-        SCALARS             : 8,
-        LOOKUP_TABLE        : 9,
-        COLOR_SCALARS       : 10
-    };
-    
-   this.json = {name:name};
-   
-   
-   function createLineIndices(line){
-       var count = line.length  -1;
-       if (count != line[0]){
-           throw 'Assertion Error. Inconsistent line';
-       }
-       var values = line.splice(1, count);
-       for (var i=0; i<count-1; i+=1){
-           indices.push(parseInt(values[i]));
-           indices.push(parseInt(values[i+1]));
-       }
-   } 
-    
-   for(var linenumber=0; linenumber<lines.length; linenumber++)
-   {
-    
-       try
-            {
-                if (lines[linenumber].indexOf('POINTS') == 0)
-                {
-                    console.log(lines[linenumber]);
-                    location = tags.POINTS;
-                    continue;
-                }
-                else if (lines[linenumber].indexOf('LINES') == 0)
-                {
-                    console.log(lines[linenumber]);
-                    location = tags.LINES;
-                    mode = "LINES";
-                    continue;
-                }
-                else if (lines[linenumber].indexOf('TRIANGLE_STRIPS') == 0){
-                    console.log(lines[linenumber]);
-                    alert('vxlVTKParser ERROR: \n'+'Triangle Strips Not Supported. Please triangulate first');
-                    throw('Triangle Strips Not Supported. Please triangulate first');
-                }
-                else if (lines[linenumber].indexOf('POLYGONS')==0)
-                {
-                    console.log(lines[linenumber]);
-                    location = tags.POLYGONS;
-                    continue;
-                }
-                else if (lines[linenumber].indexOf('POINT_DATA')==0)
-                {                   
-                    location = tags.POINT_DATA;
-                    continue;
-                }
-                else if (lines[linenumber].indexOf('NORMALS')==0)
-                {      
-                    console.log(lines[linenumber]);             
-                    location = tags.NORMALS;
-                    continue;
-                }
-                else if (lines[linenumber].indexOf('CELL_DATA')==0)
-                {      
-                    console.log(lines[linenumber]);             
-                    location = tags.CELL_DATA;
-                    continue;
-                }
-                else if (lines[linenumber].indexOf('TEXTURE_COORDINATES')==0)
-                {      
-                    console.log(lines[linenumber]);             
-                    location = tags.TEXTURE_COORDINATES;
-                    continue;
-                }
-                else if (lines[linenumber].indexOf('SCALARS')==0)
-                {      
-                    console.log(lines[linenumber]);             
-                    location = tags.SCALARS;
-                    continue;
-                }
-                else if (lines[linenumber].indexOf('LOOKUP_TABLE')==0)
-                {      
-                    console.log(lines[linenumber]);             
-                    location = tags.LOOKUP_TABLE;
-                    continue;
-                }   
-                else if (lines[linenumber].indexOf('COLOR_SCALARS')==0)
-                {      
-                    console.log(lines[linenumber]);             
-                    location = tags.COLOR_SCALARS;
-                    continue;
-                }           
-                
-                // -------------------
-                else if(location == tags.POINTS)
-                {
-                    var v = lines[linenumber].trim().split(' ');
-                    if (v == "") continue;
-                    for (var i=0; i<v.length; i++)
-                    {
-                         vertices.push(parseFloat(v[i]));
-                    }
-                }
-                else if(location == tags.LINES)
-                {
-                    var elements = lines[linenumber].trim().split(' ');
-                    if (elements == "") continue;
-                    createLineIndices(elements);
-                }
-               else if(location == tags.POLYGONS) //they have to be triangles
-                {
-                    var tt = lines[linenumber].trim().split(' ');
-                    if (tt=="") continue; 
-                    if(tt.length>0 && tt[0] != '3')
-                    {
-                        throw "Error: please make sure your vtk file contains triangles instead of polygons (triangulate first)";
-                    }
-                    for(var i= 1; i<tt.length; i++)
-                    {
-                        indices.push(parseInt(tt[i]));
-                    }
-                }
-                else if(location == tags.LOOKUP_TABLE)
-                {
-                    if(lines[linenumber].indexOf('LOOKUP_TABLE')==0)
-                        continue;
-                    else
-                    {
-                        var pd = lines[linenumber].trim().split(' ');
-                        if (pd=="") continue;
-                        for(var i=0; i<pd.length; i++)
-                        {
-                            scalars.push(parseFloat(pd[i]));
-                        }
-                   }
-                }
-                else if(location == tags.COLOR_SCALARS)
-                {
-                    var n = lines[linenumber].trim().split(' ');
-                    if (n=="") continue;
-                    for(var i=0; i<n.length; i++)
-                    {
-                        colors.push(parseFloat(n[i]));
-                    }
-                }
-                else if(location == tags.NORMALS)
-                {
-                    var n = lines[linenumber].trim().split(' ');
-                    if (n=="") continue;
-                    for(var i=0; i<n.length; i++)
-                    {
-                        normals.push(parseFloat(n[i]));
-                    }
-                }
-           } 
-        catch(err)
-            {
-            console.log('Error while processing line '+ linenumber.toString());
-            throw err;
-            }
-    }
-    
-    
-    this.json.vertices = vertices;
-    this.json.mode     = mode;
-    if (indices.length >0)   this.json.indices = indices;
-    if (normals.length >0)   this.json.normals = normals;
-    if (colors.length  >0)   this.json.colors  = colors;
-    if (scalars.length >0)   this.json.scalars = scalars;
-    
-};
-
-
-nucleo.VTKReader.prototype.getModel = function(){
-    var model = new Model(this.json.name, this.json);
-    this.json = null;
-    delete this.json;
-    return model;
 };
 
 /*-------------------------------------------------------------------------

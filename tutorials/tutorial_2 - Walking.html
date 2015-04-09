@@ -2,37 +2,77 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <meta name="description" content="Implementing walking in Nucleo.js">
     <title>Tutorial 2: Walking</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/nucleo.js"></script>
 </head>
 <body>
 <canvas id='main-view' width='350' height='350'></canvas>
 <script type='text/javascript'>
 
-    var view, camera, interactor, speed=10;
+    var view, camera, interactor, speed = 10;
 
     view = new nucleo.View('main-view');
     view.load('assets/simple/cone.json');
+    view.renderer.setMode(nucleo.Renderer.MODE.ANIMFRAME);
     view.start();
 
     //Setting the grid makes the floor visible.
-    view.scene.toys.floor.setGrid(100,2);
+    view.scene.toys.floor.setGrid(100, 2);
 
     //A first person camera is of TRACKING type
     camera = view.getCurrentCamera();
     camera.setPosition(0, 1, 40);
-    camera.setFocalPoint(0,1,0);
+    camera.setFocalPoint(0, 1, 0);
     camera.setType(nucleo.Camera.TYPE.TRACKING);
+
 
 
     //Adding key actions to the current interactor
     interactor = view.interactor;
-    interactor.addKeyAction('A', function turnLeft() { camera.changeAzimuth(speed/3); camera.refresh(); });
-    interactor.addKeyAction('W', function walk()     { camera.dolly(-speed); camera.refresh(); });
-    interactor.addKeyAction('S', function backup()   { camera.dolly(speed);  camera.refresh(); });
-    interactor.addKeyAction('D', function turnRight(){ camera.changeAzimuth(-speed/3);  camera.refresh(); });
+
+    function buildAnimationFunction(name) {
+        return function animate(start, end, N) {
+            var steps = 0;
+            var azimuth = camera.getAzimuth();
+
+            function iteration() {
+                if (steps++ != N) {
+                    var value1 = (1 - Math.cos((steps / N) * Math.PI)) / 2;
+                    var value2 = start * (1 - value1) + end * value1;
+                    if (name === 'left') {
+                        camera.setAzimuth(azimuth + value2);
+                    }
+                    else if (name === 'right'){
+                        camera.setAzimuth(azimuth - value2);
+                    }
+                    camera.refresh();
+                    window.setTimeout(iteration, 1);
+                }
+            }
+
+            iteration();
+        }
+    }
+
+    //Turn left
+    interactor.addKeyAction('A', function () {
+        buildAnimationFunction('left')(0,5,100);
+    });
+
+    interactor.addKeyAction('D', function turnRight() {
+        buildAnimationFunction('right')(0,5,100);
+    });
+
+    interactor.addKeyAction('W', function walk() {
+        camera.dolly(-speed);
+        camera.refresh();
+    });
+    interactor.addKeyAction('S', function backup() {
+        camera.dolly(speed);
+        camera.refresh();
+    });
+
+    interactor.dolly = {}; //cancel dollying
 
 </script>
 </body>

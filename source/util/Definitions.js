@@ -1,30 +1,44 @@
-/**
- *
- * @author Diego Cantor
- */
+/*-------------------------------------------------------------------------
+ This file is part of Nucleo.js
+
+ Nucleo is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation version 3.
+
+ Nucleo is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with Nucleo.  If not, see <http://www.gnu.org/licenses/>.
+ ---------------------------------------------------------------------------*/
 
 var nucleo = nucleo || {};
-
-nucleo.define ={
+/**
+ * Nucleo definitions
+ * @type {{Camera: {AXIS: {RIGHT: number[], UP: number[], NORMAL: number[]}, FRUSTUM: {FOV: number, NEAR: number, FAR: number}, TRACKING: {DEFAULT: string, ROTATIONAL: string, TRANSLATIONAL: string, CINEMATIC: string}, TYPE: {ORBITING: string, TRACKING: string, EXPLORING: string}}, View: {BACKGROUND: number[]}, ViewInteractor: {TASK: {NONE: number, PAN: number, ROTATE: number, DOLLY: number, ROLL: number}}, Actor: {MODE: {TEXTURED: string, SOLID: string, WIREFRAME: string, POINTS: string, LINES: string, BOUNDING_BOX: string, BB_AND_SOLID: string, WIRED_AND_SOLID: string, FLAT: string}, CULL: {BACK: string, FRONT: string, NONE: string}, PICKING: {DISABLED: string, CELL: string, OBJECT: string}}, Model: {LOADING_MODE: {LIVE: string, LATER: string, DETACHED: string}, MAX_NUM_INDICES: number, TYPE: {SIMPLE: string, MESH: string, BIG_DATA: string}, BoundingBox: {vertices: Array, wireframe: number[], color: number[], shading: boolean}, Floor: {vertices: Array, indices: Array, color: number[], shading: boolean}, Axis: {vertices: number[], wireframe: number[], colors: number[], shading: boolean}}, Renderable: {TASK: {CREATE: string, UPDATE_GEOMETRY: string, UPDATE_COLORS: string}}, Renderer: {MODE: {TIMER: string, ANIMFRAME: string, ON_DEMAND: string}, RATE: {SLOW: number, NORMAL: number}}, Texture: {FILTER: {NEAREST: string, LINEAR: string, NEAREST_MIPMAP_NEAREST: string, LINEAR_MIPMAP_NEAREST: string, NEAREST_MIPMAP_LINEAR: string, LINEAR_MIPMAP_LINEAR: string}}, Material: {DIFFUSE: number[], AMBIENT: number[], SPECULAR: number[], SHININESS: number, OPACITY: number, SHADING: boolean}, LookupTable: {list: string[], main: string}, PI_OVER_2: number, DEG_2_RAD: number, RAD_2_DEG: number}}
+ */
+nucleo.define = {
     /**
      * Defines the constants that can be used with <code>Camera</code>
      *
      * @namespace Camera definitions
      */
-    Camera : {
+    Camera: {
         /**
          * Camera axis
          * @type {define.Camera.AXIS|*}
          */
-        AXIS : {
+        AXIS   : {
             /**
              * Right vector constant: [1,0,0]
              */
-            RIGHT: [1, 0, 0],
+            RIGHT : [1, 0, 0],
             /**
              * Up vector constant: [0,1,0]
              */
-            UP: [0, 1, 0],
+            UP    : [0, 1, 0],
             /**
              * Camera axial or normal vector constant: [0,0,1]
              */
@@ -38,7 +52,7 @@ nucleo.define ={
             /**
              * Default field of view value: 30
              */
-            FOV: 30,
+            FOV : 30,
             /**
              * Default value for the near field: 0.1
              */
@@ -46,7 +60,7 @@ nucleo.define ={
             /**
              * Default value for the far field: 10000
              */
-            FAR: 10000
+            FAR : 10000
         },
 
         /**
@@ -81,7 +95,12 @@ nucleo.define ={
          * </pre>
          * @see Camera#follow, Camera#setTrackingMode
          */
-        TRACKING: { DEFAULT:'DEFAULT', ROTATIONAL:'ROTATIONAL', TRANSLATIONAL:'TRANSLATIONAL', CINEMATIC: 'CINEMATIC' },
+        TRACKING: {
+            DEFAULT      : 'DEFAULT',
+            ROTATIONAL   : 'ROTATIONAL',
+            TRANSLATIONAL: 'TRANSLATIONAL',
+            CINEMATIC    : 'CINEMATIC'
+        },
         /**
          * Camera type available
          *
@@ -95,7 +114,7 @@ nucleo.define ={
          *
          * <p> These modes can be used with the {@link Camera Camera constructor} or with its {@link Camera#setType setType} method</p>
          */
-        TYPE : { ORBITING: 'ORBITING', TRACKING : 'TRACKING', EXPLORING: 'EXPLORING'}
+        TYPE    : {ORBITING: 'ORBITING', TRACKING: 'TRACKING', EXPLORING: 'EXPLORING'}
     },
 
 
@@ -103,31 +122,31 @@ nucleo.define ={
      * @namespace Default values for views
      * @property {Array} background  A 4-valued array that contains the default background colour for view. The format is [r,g,b,a]
      */
-    View : {
-        BACKGROUND: [0.3,0.3,0.3]
+    View: {
+        BACKGROUND: [0.3, 0.3, 0.3]
 
     },
 
     /**
-    * @namespace Default values for view interactors
-    */
-    ViewInteractor :{
-    /**
-     *
-     * Enumeration of common camera tasks
-     *
-     * <p>The camera tasks can be:
-     * <ul>
-     * <li><code>NONE</code></li>
-     * <li><code>PAN</code></li>
-     * <li><code>ROTATE</code></li>
-     * <li><code>DOLLY</code></li>
-     * <li><code>ROLL</code></li>
-     * </ul>
-     * </p>
-     *  These constants are used internally and you probably would never need to use them.
+     * @namespace Default values for view interactors
      */
-        TASK  : { NONE : 0, PAN : 1, ROTATE : 2, DOLLY : 3, ROLL : 4}
+    ViewInteractor: {
+        /**
+         *
+         * Enumeration of common camera tasks
+         *
+         * <p>The camera tasks can be:
+         * <ul>
+         * <li><code>NONE</code></li>
+         * <li><code>PAN</code></li>
+         * <li><code>ROTATE</code></li>
+         * <li><code>DOLLY</code></li>
+         * <li><code>ROLL</code></li>
+         * </ul>
+         * </p>
+         *  These constants are used internally and you probably would never need to use them.
+         */
+        TASK: {NONE: 0, PAN: 1, ROTATE: 2, DOLLY: 3, ROLL: 4}
     },
 
     /**
@@ -135,7 +154,7 @@ nucleo.define ={
      *
      * @namespace Default values and constants that can be used with the <code>Actor</code> class.
      */
-    Actor : {
+    Actor: {
         /**
          * <p>Defines the visualization modes available for instances of Actor</p>
          * <p>The visualization  modes can be:
@@ -161,15 +180,15 @@ nucleo.define ={
          * @see Actor#setVisualizationMode
          */
         MODE: {
-            TEXTURED:'TEXTURED',
-            SOLID:'SOLID',
-            WIREFRAME:'WIREFRAME',
-            POINTS:'POINTS',
-            LINES:'LINES',
-            BOUNDING_BOX:'BOUNDING_BOX',
-            BB_AND_SOLID:'BBANDSOLID',
-            WIRED_AND_SOLID:'WIRED_AND_SOLID',
-            FLAT:'FLAT'
+            TEXTURED       : 'TEXTURED',
+            SOLID          : 'SOLID',
+            WIREFRAME      : 'WIREFRAME',
+            POINTS         : 'POINTS',
+            LINES          : 'LINES',
+            BOUNDING_BOX   : 'BOUNDING_BOX',
+            BB_AND_SOLID   : 'BBANDSOLID',
+            WIRED_AND_SOLID: 'WIRED_AND_SOLID',
+            FLAT           : 'FLAT'
         },
         /**
          *  <p>Defines the culling modes available for instances of Actor</p>
@@ -179,19 +198,19 @@ nucleo.define ={
          *   actor.cullFace(Actor.CULL.BACK); //hides the back face.
          *  </pre>
          */
-        CULL:{
-            BACK:'BACK',
-            FRONT:'FRONT',
-            NONE:'NONE'
+        CULL: {
+            BACK : 'BACK',
+            FRONT: 'FRONT',
+            NONE : 'NONE'
         },
 
         /**
          * <p>Defines the picking modes available for <code>Actor</code></p>
          */
         PICKING: {
-            DISABLED:'DISABLED',
-            CELL:'CELL',
-            OBJECT:'OBJECT'
+            DISABLED: 'DISABLED',
+            CELL    : 'CELL',
+            OBJECT  : 'OBJECT'
         }
 
     },
@@ -199,7 +218,7 @@ nucleo.define ={
     /**
      * @namespace Default values for models
      */
-    Model	: {
+    Model: {
 
         /**
          *  Enumeration with the different loading modes provided for models
@@ -209,9 +228,9 @@ nucleo.define ={
          * <li><code>DETACHED</code>: The assets are never added to the scene. The programmer decides when to do this.</li>
          * </ul>
          *
-         * These modes can be used with {@link vxlScene.setLoadingMode}
+         * These modes can be used with {@link nucleo.Scene.setLoadingMode}
          */
-        LOADING_MODE: {LIVE: 'LIVE', LATER: 'LATER', DETACHED: 'DETACHED'},
+        LOADING_MODE   : {LIVE: 'LIVE', LATER: 'LATER', DETACHED: 'DETACHED'},
         /**
          * Maximum number of indices per model (Unsigned Short range)
          */
@@ -223,51 +242,52 @@ nucleo.define ={
          * <li><code>MESH</code>: This model represents a mesh (no shared triangles). Flat shading is required
          * <li><code>BIG_DATA</code>: This model is complex and it may required several rendering cycles.
          */
-        TYPE: {SIMPLE: 'SIMPLE', MESH: 'MESH', BIG_DATA: 'BIG DATA'},
+        TYPE           : {SIMPLE: 'SIMPLE', MESH: 'MESH', BIG_DATA: 'BIG DATA'},
 
-        BoundingBox :{ "vertices" : [],
-                "wireframe":[0,1,1,2,2,3,3,0,0,4,4,5,5,6,6,7,7,4,1,5,2,6,3,7],
-                "color":[1.0,1.0,1.0,1.0],
-                "shading": false
+        BoundingBox: {
+            "vertices" : [],
+            "wireframe": [0, 1, 1, 2, 2, 3, 3, 0, 0, 4, 4, 5, 5, 6, 6, 7, 7, 4, 1, 5, 2, 6, 3, 7],
+            "color"    : [1.0, 1.0, 1.0, 1.0],
+            "shading"  : false
         },
 
-        Floor :{
-            "vertices":[],"indices":[],"color":[0.6,0.6,0.6,1.0],"shading": false
+        Floor: {
+            "vertices": [], "indices": [], "color": [0.6, 0.6, 0.6, 1.0], "shading": false
         },
 
-        Axis :{
-            "vertices": [	-1, 0, 0, 	 1, 0, 0, 	 0,-2, 0,	 0, 2, 0,	 0, 0,-1,	 0, 0, 1	],
-            "wireframe": [ 	0, 1, 	2, 3, 	4, 5	],
-            "colors": [	1, 0, 0, 	  1, 0, 0, 	0, 1 ,0, 	 0, 1 ,0,   0, 0, 1,	 0, 0, 1 	],
-            "shading": false
+        Axis: {
+            "vertices" : [-1, 0, 0, 1, 0, 0, 0, -2, 0, 0, 2, 0, 0, 0, -1, 0, 0, 1],
+            "wireframe": [0, 1, 2, 3, 4, 5],
+            "colors"   : [1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],
+            "shading"  : false
         }
 
     },
 
-    Renderable :{
-        TASK :{CREATE:'CREATE', UPDATE_GEOMETRY:'UPDATE_GEOMETRY', UPDATE_COLORS:'UPDATE_COLORS'}
+    Renderable: {
+        TASK: {CREATE: 'CREATE', UPDATE_GEOMETRY: 'UPDATE_GEOMETRY', UPDATE_COLORS: 'UPDATE_COLORS'}
 
     },
 
     /**
      * @namespace Default values for renderers
      */
-    Renderer 		: {
-        MODE: { TIMER:'TIMER', ANIMFRAME:'ANIMFRAME', ON_DEMAND:'ON_DEMAND'},
-        RATE : { SLOW: 10000,  NORMAL: 500 }
+    Renderer: {
+        MODE: {TIMER: 'TIMER', ANIMFRAME: 'ANIMFRAME', ON_DEMAND: 'ON_DEMAND'},
+        RATE: {SLOW: 10000, NORMAL: 500}
     },
 
     /**
      * @namespace Constants to handle textures
      */
-    Texture : {
-        FILTER:{
-            NEAREST:'NEAREST',
-            LINEAR:'LINEAR',
-            NEAREST_MIPMAP_NEAREST:'NEAREST_MIPMAP_NEAREST',
-            LINEAR_MIPMAP_NEAREST:'LINEAR_MIPMAP_NEAREST',
-            NEAREST_MIPMAP_LINEAR:'NEAREST_MIPMAP_LINEAR',
-            LINEAR_MIPMAP_LINEAR:'LINEAR_MIPMAP_LINEAR'
+    Texture: {
+        FILTER: {
+            NEAREST               : 'NEAREST',
+            LINEAR                : 'LINEAR',
+            NEAREST_MIPMAP_NEAREST: 'NEAREST_MIPMAP_NEAREST',
+            LINEAR_MIPMAP_NEAREST : 'LINEAR_MIPMAP_NEAREST',
+            NEAREST_MIPMAP_LINEAR : 'NEAREST_MIPMAP_LINEAR',
+            LINEAR_MIPMAP_LINEAR  : 'LINEAR_MIPMAP_LINEAR'
         }
     },
 
@@ -275,39 +295,38 @@ nucleo.define ={
      * @namespace Default values for <code>Material</code>
      * @see Material
      */
-    Material   : {
+    Material: {
         /**
          * Diffuse color used by default when a model does
          * not have diffuse color information: [0.8,0.8,0.8,1.0]
          */
-        DIFFUSE: [0.8,0.8,0.8,1.0],
+        DIFFUSE  : [0.8, 0.8, 0.8, 1.0],
         /**
          * Ambient color used by default when a model
          * does not have ambient color information: [0.0,0.0,0.0,1.0]
          */
-        AMBIENT: [0.0,0.0,0.0,1.0],
+        AMBIENT  : [0.0, 0.0, 0.0, 1.0],
         /**
          * Specular color used by default when a model
          * does not have specular color information: [0.0,0.0,0.0,1.0]
          */
-        SPECULAR: [0.0,0.0,0.0,1.0],
+        SPECULAR : [0.0, 0.0, 0.0, 1.0],
         /**
          * Shininess used by default when a model
          * does not have shininess information: 0
          */
-        SHININESS : 0.0,
+        SHININESS: 0.0,
         /**
          * Opacity used by default when a model
          * does not have opacity information: 0
          */
-        OPACITY : 1.0,
+        OPACITY  : 1.0,
         /**
          * Shading used by default when a model
          * does not have shading information: 0
          */
-        SHADING : true
+        SHADING  : true
     },
-
 
 
     /**
@@ -315,33 +334,32 @@ nucleo.define ={
      * @property {Array}       list         List of lookup tables available
      * @property {String}      main         Lookup table loaded by default
      */
-    LookupTable             : {
+    LookupTable: {
 
-        list : ["default","aal","autumn","blackbody","bone","brodmann","cardiac",
-            "copper","cortex","cte","french","fs","ge_color","gold","gooch",
-            "hot","hotiron","hsv","jet","nih","nih_fire","nih_ice","pink",
-            "rainramp","spectrum","surface","x_hot","x_rain"],
+        list: ["default", "aal", "autumn", "blackbody", "bone", "brodmann", "cardiac",
+            "copper", "cortex", "cte", "french", "fs", "ge_color", "gold", "gooch",
+            "hot", "hotiron", "hsv", "jet", "nih", "nih_fire", "nih_ice", "pink",
+            "rainramp", "spectrum", "surface", "x_hot", "x_rain"],
 
-        main:"default"
+        main: "default"
 
     },
 
     /**
      * Pi divided by 2
      */
-    PI_OVER_2: Math.PI /2,
+    PI_OVER_2: Math.PI / 2,
     /**
      * Multiplicative constant to convert degrees to radians
      */
-    DEG_2_RAD : Math.PI / 180,
+    DEG_2_RAD: Math.PI / 180,
     /**
      * Multiplicative constant to convert radians to degrees
      */
-    RAD_2_DEG : 180 / Math.PI
+    RAD_2_DEG: 180 / Math.PI
 
 
 };
-
 
 
 /**
@@ -362,18 +380,17 @@ nucleo.define ={
  * @property {JSON} bake The program that interleaves buffers for optimized rendering
  */
 nucleo.ESSL = {
-    VERTEX_SHADER   	: 'VERTEX_SHADER',
-        FRAGMENT_SHADER 	: 'FRAGMENT_SHADER',
-        MODEL_VIEW_MATRIX  	: 'mModelView',
-        NORMAL_MATRIX   	: 'mNormal',
-        PERSPECTIVE_MATRIX 	: 'mPerspective',
-        MVP_MATRIX          : 'mModelViewPerspective',
-        VERTEX_ATTRIBUTE    : 'aVertexPosition',
-        NORMAL_ATTRIBUTE    : 'aVertexNormal',
-        COLOR_ATTRIBUTE     : 'aVertexColor',
-        TEXCOORD_ATTRIBUTE  : 'aVertexTextureCoords'
+    VERTEX_SHADER     : 'VERTEX_SHADER',
+    FRAGMENT_SHADER   : 'FRAGMENT_SHADER',
+    MODEL_VIEW_MATRIX : 'mModelView',
+    NORMAL_MATRIX     : 'mNormal',
+    PERSPECTIVE_MATRIX: 'mPerspective',
+    MVP_MATRIX        : 'mModelViewPerspective',
+    VERTEX_ATTRIBUTE  : 'aVertexPosition',
+    NORMAL_ATTRIBUTE  : 'aVertexNormal',
+    COLOR_ATTRIBUTE   : 'aVertexColor',
+    TEXCOORD_ATTRIBUTE: 'aVertexTextureCoords'
 };
-
 
 
 /**
@@ -396,19 +413,19 @@ nucleo.ESSL = {
  * @see {Notifier}
  */
 nucleo.EVENTS = {
-    DEFAULT_LUT_LOADED 	   : 'nucleo.EVENTS.DEFAULT_LUT_LOADED',
-        SCENE_UPDATED		   : 'nucleo.EVENTS.SCENE_UPDATED',
-        MODELS_LOADING         : 'nucleo.EVENTS.MODELS_LOADING',
-        MODEL_NEW              : 'nucleo.EVENTS.MODEL_NEW',
-        MODELS_LOADED		   : 'nucleo.EVENTS.MODELS_LOADED',
-        ACTOR_MOVED            : 'nucleo.EVENTS.ACTOR_MOVED',
-        ACTOR_SCALED           : 'nucleo.EVENTS.ACTOR_SCALED',
-        ACTOR_ROTATED          : 'nucleo.EVENTS.ACTOR_ROTATED',
-        ACTOR_CHANGED_COLOR    : 'nucleo.EVENTS.ACTOR_CHANGED_COLOR',
-        ACTOR_CHANGED_SHADING  : 'nucleo.EVENTS.ACTOR_CHANGED_SHADING',
-        VIEW_NEW               : 'nucleo.EVENTS.VIEW_NEW',
-        SCENE_NEW              : 'nucleo.EVENTS.SCENE_NEW',
-        READER_DONE            : 'nucleo.EVENTS.READER_DONE'
+    DEFAULT_LUT_LOADED   : 'nucleo.EVENTS.DEFAULT_LUT_LOADED',
+    SCENE_UPDATED        : 'nucleo.EVENTS.SCENE_UPDATED',
+    MODELS_LOADING       : 'nucleo.EVENTS.MODELS_LOADING',
+    MODEL_NEW            : 'nucleo.EVENTS.MODEL_NEW',
+    MODELS_LOADED        : 'nucleo.EVENTS.MODELS_LOADED',
+    ACTOR_MOVED          : 'nucleo.EVENTS.ACTOR_MOVED',
+    ACTOR_SCALED         : 'nucleo.EVENTS.ACTOR_SCALED',
+    ACTOR_ROTATED        : 'nucleo.EVENTS.ACTOR_ROTATED',
+    ACTOR_CHANGED_COLOR  : 'nucleo.EVENTS.ACTOR_CHANGED_COLOR',
+    ACTOR_CHANGED_SHADING: 'nucleo.EVENTS.ACTOR_CHANGED_SHADING',
+    VIEW_NEW             : 'nucleo.EVENTS.VIEW_NEW',
+    SCENE_NEW            : 'nucleo.EVENTS.SCENE_NEW',
+    READER_DONE          : 'nucleo.EVENTS.READER_DONE'
 };
 
 nucleo.DEBUG = true;

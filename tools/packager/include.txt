@@ -1,6 +1,7 @@
 Definitions
+Ajax
 Utils
-Notifier 
+Notifier
 gl-matrix
 Landmark   
 Camera
@@ -34,10 +35,10 @@ LookupTableManager
 BoundingBox 
 Axis 
 Floor
-View 
+View
+VTKReader
 ModelManager 
 FrameAnimation
-VTKReader
 Texture
 Material
 Renderable

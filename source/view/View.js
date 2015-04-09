@@ -374,7 +374,7 @@ nucleo.View.prototype.load = function (arguments, path, mode) {
         throw Exception("not a valid argument");
     }
 
-    if (mode != undefined && mode != null) {
+    if (mode !== undefined && mode !== null) {
         this.scene.setLoadingMode(mode);
     }
 

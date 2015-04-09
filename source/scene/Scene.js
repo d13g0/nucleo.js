@@ -26,23 +26,23 @@
  */
 nucleo.Scene = function Scene() {
 
-    this.UID               = nucleo.util.generateUID();
-    this.views             = [];
-    this._actors           = [];
-    this._groups           = [];
-    this.toys              = new nucleo.SceneToys(this);
-    this.loadingMode       = nucleo.Model.LOADING_MODE.LIVE;
-    this.normalsFlipped    = false;
-    this.lutID             = null;
-    this.timerID           = null;
-    this.scalarMIN         = Number.MAX_VALUE;
-    this.scalarMAX         = Number.MIN_VALUE;
-    this.bb                = [0, 0, 0, 0, 0, 0];
-    this.centre            = [0, 0, 0];
-    this.frameAnimation    = null;
+    this.UID            = nucleo.util.generateUID();
+    this.views          = [];
+    this._actors        = [];
+    this._groups        = [];
+    this.toys           = new nucleo.SceneToys(this);
+    this.loadingMode    = nucleo.Model.LOADING_MODE.LIVE;
+    this.normalsFlipped = false;
+    this.lutID          = null;
+    this.timerID        = null;
+    this.scalarMIN      = Number.MAX_VALUE;
+    this.scalarMAX      = Number.MIN_VALUE;
+    this.bb             = [0, 0, 0, 0, 0, 0];
+    this.centre         = [0, 0, 0];
+    this.frameAnimation = null;
 
-    var ntf                = nucleo.Notifier.instance;
-    var e                  = nucleo.EVENTS;
+    var ntf = nucleo.Notifier.instance;
+    var e   = nucleo.EVENTS;
 
     ntf.publish([e.SCENE_NEW, e.SCENE_UPDATED], this);
     ntf.subscribe([e.MODELS_LOADED, e.DEFAULT_LUT_LOADED], this);
@@ -76,11 +76,12 @@ nucleo.Scene.prototype.handleEvent = function (event, src) {
  * @see {Model.loadingMode}
  */
 nucleo.Scene.prototype.setLoadingMode = function (mode) {
-    var m = Model.loadingMode;
 
-    if (mode == undefined || mode == null ||
-        (mode != m.LIVE && mode != m.LATER && mode != m.DETACHED)) {
-        throw('the mode ' + mode + 'is not a valid loading mode');
+    var m = nucleo.define.Model.LOADING_MODE;
+
+    if (mode === undefined || mode === null ||
+        (mode !== m.LIVE && mode !== m.LATER && mode !== m.DETACHED)) {
+        throw ('the mode ' + mode + 'is not a valid loading mode');
     }
     this.loadingMode = mode;
 };
@@ -148,30 +149,8 @@ nucleo.Scene.prototype.computeBoundingBox = function () {
     }
 };
 
-/**
- * This function creates AND ADD a new actor to this scene
- * @param {Model} model the model from which a new actor will be created AND added to this scene
- *
- * If you are looking to create but not adding an actor call new Actor(model) instead.
- *
- * @returns actor the actor that was created and added to the scene, from the model passed as parameter
- */
-nucleo.Scene.prototype.createActor = function (model) {
-    var actor = new nucleo.Actor(model);
-    this.addActor(actor);
-    return actor;
-};
 
-/**
- * Creates multiples actors at once
- * @param {[ Model ]} models a list of models to create actors from
- */
-nucleo.Scene.prototype.createActors = function (models) {
-    var i = models.length;
-    while (i--) {
-        this.createActor(models[i]);
-    }
-};
+
 /**
  * Adds one actor.
  * @param actor the actor to be added to the scene
@@ -204,7 +183,7 @@ nucleo.Scene.prototype.updateActor = function (actor) {
     if (!this.hasActor(actor)) return;
 
     actor.dirty = true;
-    var i = this.views.length;
+    var i       = this.views.length;
     while (i--) {
         this.views[i].renderer.reallocate();
     }
@@ -216,9 +195,9 @@ nucleo.Scene.prototype.updateActor = function (actor) {
  * @param actor the actor to be removed from the scene
  */
 nucleo.Scene.prototype.removeActor = function (actor) {
-    var idx = this._actors.indexOf(actor);
+    var idx    = this._actors.indexOf(actor);
     var _actor = this._actors.splice(idx, 1);
-    _actor = null;
+    _actor     = null;
     this.computeBoundingBox();
 };
 
@@ -258,7 +237,7 @@ nucleo.Scene.prototype.setPropertyForAll = function (property, value) {
  * @param {Object} value the value of the property
 
  */
-nucleo.Scene.prototype.setPropertyFor = function (list, property, value) {
+nucleo.Scene.prototype.setPropertyFor    = function (list, property, value) {
     var i = list.length;
     while (i--) {
         if (this.hasActor(list[i])) {
@@ -293,7 +272,7 @@ nucleo.Scene.prototype.updateScalarRange = function () {
  */
 nucleo.Scene.prototype.setLookupTable = function (lutID) {
     this.lutID = lutID;
-    var i = this._actors.length;
+    var i      = this._actors.length;
     while (i--) {
         this._actors[i].setLookupTable(lutID, this.scalarMIN, this.scalarMAX);
     }
@@ -308,7 +287,7 @@ nucleo.Scene.prototype.reset = function () {
     while (i--) {
         this._actors[i] = null;
     }
-    this._actors = [];
+    this._actors   = [];
     nucleo.c.actor = null;
     this.computeBoundingBox();
 };
@@ -318,7 +297,7 @@ nucleo.Scene.prototype.reset = function () {
  * @param name the name of the actor to retrieve
  */
 nucleo.Scene.prototype.getActorByName = function (name) {
-    name = name.replace(/\.[^/.]+$/, "");
+    name  = name.replace(/\.[^/.]+$/, "");
     var i = this._actors.length;
     while (i--) {
         if (this._actors[i].name == name) {
@@ -367,14 +346,14 @@ nucleo.Scene.prototype.getActor = function (actorNameOrUID) {
  */
 nucleo.Scene.prototype.getActorsThat = function (condition) {
     var idx = [];
-    var i = this._actors.length;
+    var i   = this._actors.length;
     while (i--) {
         if (condition(this._actors[i])) {
             idx.push(i);
         }
     }
     var results = [];
-    var j = idx.length;
+    var j       = idx.length;
     while (j--) {
         results.push(this._actors[idx[j]]);
     }
@@ -431,11 +410,11 @@ nucleo.Scene.prototype.setVisualizationMode = function (mode) {
  * @param {FrameAnimation} animation the animation to set on this scene
  * @see FrameAnimation
  */
-nucleo.Scene.prototype.setAnimation = function (animation) {
+nucleo.Scene.prototype.setAnimation   = function (animation) {
     if (animation instanceof nucleo.FrameAnimation) {
-        this.frameAnimation = animation;
+        this.frameAnimation       = animation;
         this.frameAnimation.scene = this;
-        var i = this.views.length;
+        var i                     = this.views.length;
         while (i--) {
             this.views[i].renderer.setMode(nucleo.Renderer.MODE.ANIMFRAME);
         }
@@ -451,7 +430,7 @@ nucleo.Scene.prototype.setAnimation = function (animation) {
 nucleo.Scene.prototype.clearAnimation = function () {
     if (this.frameAnimation) {
         this.frameAnimation.scene = null;
-        this.frameAnimation = null;
+        this.frameAnimation       = null;
     }
 };
 
@@ -461,7 +440,7 @@ nucleo.Scene.prototype.clearAnimation = function () {
  */
 nucleo.Scene.prototype.getActorNames = function () {
     var list = [];
-    var i = this._actors.length;
+    var i    = this._actors.length;
     while (i--) {
         list.push(this._actors[i].name);
     }
@@ -489,7 +468,7 @@ nucleo.Scene.prototype.getPickableActors = function () {
  */
 nucleo.Scene.prototype.getActorByCellUID = function (UID) {
     var list = [];
-    var i = this._actors.length;
+    var i    = this._actors.length;
     while (i--) {
         var actor = this._actors[i];
         if (actor.mesh != undefined && actor.mesh.hasCell(UID)) {

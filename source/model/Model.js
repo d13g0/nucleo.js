@@ -24,24 +24,24 @@
  * @author Diego Cantor
  */
 nucleo.Model = function Model(name, JSON_OBJECT) {
-    this.UID = nucleo.util.generateUID();
-    this.name = name;
-    this.indices = [];
-    this.vertices = [];
-    this.scalars = undefined;
-    this.diffuse = undefined;
-    this.ambient = undefined;
-    this.specular = undefined;
+    this.UID        = nucleo.util.generateUID();
+    this.name       = name;
+    this.indices    = [];
+    this.vertices   = [];
+    this.scalars    = undefined;
+    this.diffuse    = undefined;
+    this.ambient    = undefined;
+    this.specular   = undefined;
     this.shininness = undefined;
-    this.normals = undefined;
-    this.wireframe = undefined;
-    this.bb = [0, 0, 0, 0, 0, 0];
-    this.centre = [0, 0, 0, 0, 0, 0];
-    this.mode = nucleo.Actor.MODE.SOLID;
-    this.image = undefined;
-    this.uri = undefined;
-    this.colors = undefined;
-    this.type = nucleo.Model.TYPE.SIMPLE;
+    this.normals    = undefined;
+    this.wireframe  = undefined;
+    this.bb         = [0, 0, 0, 0, 0, 0];
+    this.centre     = [0, 0, 0, 0, 0, 0];
+    this.mode       = nucleo.Actor.MODE.SOLID;
+    this.image      = undefined;
+    this.uri        = undefined;
+    this.colors     = undefined;
+    this.type       = nucleo.Model.TYPE.SIMPLE;
     this.renderable = undefined;
 
     if (JSON_OBJECT != undefined) {
@@ -54,9 +54,10 @@ nucleo.Model = function Model(name, JSON_OBJECT) {
 /*
  * Constants
  */
-nucleo.Model.LOADING_MODE = nucleo.define.Model.LOADING_MODE;
+nucleo.Model.LOADING_MODE    = nucleo.define.Model.LOADING_MODE;
 nucleo.Model.MAX_NUM_INDICES = nucleo.define.Model.MAX_NUM_INDICES;
-nucleo.Model.TYPE = nucleo.define.Model.TYPE;
+nucleo.Model.TYPE            = nucleo.define.Model.TYPE;
+
 /**
  * Indices to draw the bounding box. The vertices in this case will correspond
  * to the actor bounding box calculation
@@ -150,11 +151,11 @@ nucleo.Model.prototype.update = function () {
  */
 nucleo.Model.prototype.computeNormals = function () {
     //face normal calculation
-    var vs = this.vertices,
+    var vs  = this.vertices,
         ind = this.indices,
-        x = 0,
-        y = 1,
-        z = 2;
+        x   = 0,
+        y   = 1,
+        z   = 2;
 
     var ns = [];
     for (var i = 0; i < vs.length; i = i + 3) { //for each index, initialize normal x, normal y, normal z
@@ -164,8 +165,8 @@ nucleo.Model.prototype.computeNormals = function () {
     }
 
     for (var i = 0; i < ind.length; i = i + 3) { //we work on triads of vertex to calculate normals so i = i+3 (i = indices index)
-        var v1 = [];
-        var v2 = [];
+        var v1     = [];
+        var v2     = [];
         var normal = [];
         //p2 - p1
         v1[x] = vs[3 * ind[i + 2] + x] - vs[3 * ind[i + 1] + x];
@@ -191,9 +192,9 @@ nucleo.Model.prototype.computeNormals = function () {
     for (var i = 0; i < vs.length; i = i + 3) { //the increment here is because each vertex occurs with an offset of 3 in the array (due to x, y, z contiguous values)
 
         var nn = [];
-        nn[x] = ns[i + x];
-        nn[y] = ns[i + y];
-        nn[z] = ns[i + z];
+        nn[x]  = ns[i + x];
+        nn[y]  = ns[i + y];
+        nn[z]  = ns[i + z];
 
         var len = Math.sqrt((nn[x] * nn[x]) + (nn[y] * nn[y]) + (nn[z] * nn[z]));
         if (len == 0) len = 1.0;
@@ -228,15 +229,15 @@ nucleo.Model.prototype.flipNormals = function () {
 nucleo.Model.prototype.computeWireframeIndices = function () {
     var ind = this.indices;
     var wfi = [];
-    var j = 0;
+    var j   = 0;
     for (var i = 0; i < ind.length; i = i + 3) {
-        wfi[j] = ind[i];
+        wfi[j]     = ind[i];
         wfi[j + 1] = ind[i + 1];
         wfi[j + 2] = ind[i + 1];
         wfi[j + 3] = ind[i + 2];
         wfi[j + 4] = ind[i + 2];
         wfi[j + 5] = ind[i];
-        j = j + 6;
+        j          = j + 6;
     }
     this.wireframe = wfi;
 };
@@ -250,12 +251,12 @@ nucleo.Model.prototype.computeBoundingBox = function () {
 
     //This is the case with the scene toys
     if (this.vertices.length == 0) {
-        this.bb = [0, 0, 0, 0, 0, 0];
+        this.bb     = [0, 0, 0, 0, 0, 0];
         this.centre = [0, 0, 0, 0, 0, 0];
         return;
     }
 
-    var vs = this.vertices;
+    var vs  = this.vertices;
     var bbm = [vs[0], vs[1], vs[2], vs[0], vs[1], vs[2]];
 
     var i = vs.length;
@@ -276,7 +277,7 @@ nucleo.Model.prototype.computeBoundingBox = function () {
     c[2] = (bbm[5] + bbm[2]) / 2;
 
 
-    this.bb = bbm;
+    this.bb     = bbm;
     this.centre = c;
 };
 
